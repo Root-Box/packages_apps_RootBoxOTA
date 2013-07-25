@@ -36,7 +36,7 @@
     <string name="rom_gapps_new_version">New versions found!</string>
     <string name="rom_new_version">New rom version found!</string>
     <string name="gapps_new_version">New google apps version found!</string>
-    <string name="rom_scanning">Checking for new versions...</string>
+    <string name="rom_scanning">Checking...</string>
     <string name="gapps_version">Google apps %1$s</string>
     <string name="rom_outdated">Your ROM is outdated!</string>
     <string name="gapps_outdated">Your google apps are outdated!</string>
