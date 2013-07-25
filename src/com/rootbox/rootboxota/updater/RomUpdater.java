@@ -51,10 +51,10 @@ public class RomUpdater extends Updater {
 
     @Override
     public long getVersion() {
-        String version = Utils.getProp("ro.rootbox.build");
+        String version = Utils.getProp(PROPERTY_VERSION_ROOTBOX);
         if (version == null || "".equals(version)) {
             // check for old version
-            version = Utils.getProp("ro.goo.version");
+            version = Utils.getProp(PROPERTY_VERSION_ROOTBOX_OLD);
         }
         String stripped = version.replaceAll("\\D+", "");
         return Long.parseLong(stripped);
@@ -71,7 +71,12 @@ public class RomUpdater extends Updater {
     }
 
     private String getDevice() {
-        return Utils.getProp(PROPERTY_DEVICE);
+        String device = Utils.getProp(PROPERTY_DEVICE_ROOTBOX);
+        if (device == null || "".equals(device)) {
+            // check for default device name
+            device = Utils.getProp(PROPERTY_DEVICE);
+        }
+        return device;
     }
 
     @Override
