@@ -223,7 +223,7 @@ public class Utils {
 
         Notification.Builder builder = new Notification.Builder(context)
                 .setContentTitle(resources.getString(contentTitleResourceId))
-                .setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent);
+                .setSmallIcon(R.drawable.ic_notification).setContentIntent(pIntent);
 
         if (infos.length == 1) {
             builder.setContentText(resources.getString(R.string.new_package_name,
