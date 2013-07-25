@@ -10,6 +10,10 @@ gen/
 *.iml
 bin/
 tmp/
+out/
+.idea/
+*.iml
+gen/
 *.tmp
 *.bak
 *.swp

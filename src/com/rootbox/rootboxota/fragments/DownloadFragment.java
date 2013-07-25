@@ -188,7 +188,9 @@ public class DownloadFragment extends android.preference.PreferenceFragment impl
         if (isRom) {
             return Utils.getReadableVersion(Utils.getProp(Utils.MOD_VERSION));
         } else {
-            return Utils.getReadableVersion("pa_gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion());
+            // TODO: when making switch for PA and retail gapps - remake this line with pa_ prefix
+            // return Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion());
+            return Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion());
         }
     }
 

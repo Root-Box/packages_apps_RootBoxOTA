@@ -30,9 +30,7 @@ import com.rootbox.rootboxota.http.URLStringReader;
 
 public class RomUpdater extends Updater {
 
-    public static final String PROPERTY_VERSION = "ro.modversion";
-
-    private static final String URL = "http://api.paranoidandroid.co/updates/%s?v=%s";
+    private static final String URL = "http://api.rootbox.ca/updates/?d=%s&v=%s";
 
     private boolean mScanning = false;
     private boolean mFromAlarm;
@@ -53,7 +51,11 @@ public class RomUpdater extends Updater {
 
     @Override
     public long getVersion() {
-        String version = Utils.getProp(PROPERTY_VERSION);
+        String version = Utils.getProp("ro.rootbox.build");
+        if (version == null || "".equals(version)) {
+            // check for old version
+            version = Utils.getProp("ro.goo.version");
+        }
         String stripped = version.replaceAll("\\D+", "");
         return Long.parseLong(stripped);
     }
