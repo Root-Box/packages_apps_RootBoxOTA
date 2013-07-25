@@ -45,6 +45,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,10 +104,13 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
     private RecoveryHelper mRecoveryHelper;
     private RebootHelper mRebootHelper;
 
+    private ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_PROGRESS);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
         setContentView(R.layout.activity_main);
 
@@ -114,6 +118,9 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
         mSliderTitles = getResources().getStringArray(R.array.slider_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar_loop);
+        mProgressBar.setVisibility(View.INVISIBLE);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         ListItems content = new ListItems();
@@ -123,8 +130,6 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
-        setProgressBarIndeterminate(true);
 
         // Helper methods
         mNotificationHelper = new NotificationHelper(this);
@@ -315,7 +320,7 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
     public void versionFound(PackageInfo[] info, boolean isRom) {
         boolean checking = mRomUpdater.isScanning() || mGappsUpdater.isScanning();
         if (!checking) {
-            setProgressBarVisibility(false);
+            mProgressBar.setVisibility(View.INVISIBLE);
         }
         if (info != null && info.length > 0) {
             if (isRom) {
@@ -331,8 +336,8 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
 
     @Override
     public void startChecking(boolean isRom) {
-        setProgressBarIndeterminate(true);
-        setProgressBarVisibility(true);
+        mProgressBar.setIndeterminate(true);
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     // NotificationCallback methods
@@ -349,23 +354,30 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
 
     @Override
     public void onDownloadError() {
-        setProgressBarVisibility(false);
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onDownloadProgress(int progress) {
+        mProgressBar.setVisibility(View.VISIBLE);
         if (progress < 0) {
-            setProgressBarIndeterminate(true);
+            mProgressBar.setIndeterminate(true);
         } else {
-            setProgressBarIndeterminate(false);
-            setProgress(progress * 100);
+            mProgressBar.setIndeterminate(false);
+            mProgressBar.setProgress(progress * 100);
         }
-        setProgressBarVisibility(progress < 100);
+
+        if(progress < 100) {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+        else {
+            mProgressBar.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
     public void onDownloadFinished(Uri uri, final String md5, boolean isRom) {
-        setProgressBarVisibility(false);
+        mProgressBar.setVisibility(View.INVISIBLE);
         if (uri != null) {
             String filePath = uri.toString().replace("file://", "");
             if (filePath == null || !filePath.endsWith(".zip")) {
@@ -450,8 +462,8 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
                 break;
             case CHANGELOG:
                 if (mChangelogFragment == null) {
-                    setProgressBarIndeterminate(true);
-                    setProgressBarVisibility(true);
+                    mProgressBar.setIndeterminate(true);
+                    mProgressBar.setVisibility(View.VISIBLE);
                     mChangelogFragment = new ChangelogFragment();
                 }
                 fragment = mChangelogFragment;

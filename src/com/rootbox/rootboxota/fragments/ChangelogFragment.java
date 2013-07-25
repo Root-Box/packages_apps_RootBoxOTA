@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rootbox.rootboxota.R;
@@ -32,6 +33,7 @@ public class ChangelogFragment extends Fragment {
 
     private static final String CHANGELOG_URL
             = "https://plus.google.com/app/basic/107979589566958860409/posts";
+    private ProgressBar mProgressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,22 +45,26 @@ public class ChangelogFragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                mProgressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar_loop);
+                mProgressBar.setIndeterminate(true);
+                mProgressBar.setVisibility(View.VISIBLE);
                 view.loadUrl(url);
                 return true;
             }
 
             public void onPageFinished(WebView view, String url) {
-                // When page is loaded, hide progress bar on activity
                 Activity act = getActivity();
                 if (act == null) {
                     return;
                 }
-                act.setProgressBarVisibility(false);
+                mProgressBar = (ProgressBar) act.findViewById(R.id.progress_bar_loop);
+                mProgressBar.setVisibility(View.INVISIBLE);
             }
 
             public void onReceivedError(WebView view, int errorCode, String description,
                                         String failingUrl) {
-                getActivity().setProgressBarVisibility(false);
+                mProgressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar_loop);
+                mProgressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(getActivity(), R.string.changelog_error, Toast.LENGTH_SHORT).show();
             }
         });
