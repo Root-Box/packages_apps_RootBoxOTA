@@ -110,6 +110,13 @@
     <string name="install_option_wipe_system">Wipe System</string>
     <string name="install_option_wipe_data">Wipe Data</string>
     <string name="install_option_wipe_caches">Wipe Cache &amp; Dalvik</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_version_summary">Unknown...</string>
+    <string name="settings_paranoid_android">Source from</string>
+    <string name="settings_paranoid_android_summary">Paranoid Android team\nwww.github.com/ParanoidAndroid</string>
+    <string name="settings_rootbox">Improved by</string>
+    <string name="settings_rootbox_summary">RootBox team\nwww.github.com/Root-Box</string>
 
     <!-- REBOOT & INSTALL-->
     <string name="backup">Backup</string>

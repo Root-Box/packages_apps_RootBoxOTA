@@ -83,4 +83,21 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+            android:key="settings_about"
+            android:title="@string/settings_about" >
+        <Preference
+                android:key="settings_version"
+                android:summary="@string/settings_version_summary"
+                android:title="@string/settings_version" />
+        <Preference
+            android:key="settings_paranoid_android"
+            android:summary="@string/settings_paranoid_android_summary"
+            android:title="@string/settings_paranoid_android" />
+        <Preference
+            android:key="settings_rootbox"
+            android:summary="@string/settings_rootbox_summary"
+            android:title="@string/settings_rootbox" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

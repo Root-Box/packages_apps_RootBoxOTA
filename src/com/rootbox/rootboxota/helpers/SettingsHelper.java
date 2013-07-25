@@ -46,6 +46,10 @@ public class SettingsHelper {
     public static final String PROPERTY_SETTINGS_RECOVERY = "settings_recovery";
     public static final String PROPERTY_SHOW_OPTIONS = "showoptions";
 
+    public static final String PROPERTY_VERSION = "settings_version";
+    public static final String PROPERTY_PARANOID = "settings_paranoid_android";
+    public static final String PROPERTY_ROOTBOX = "settings_rootbox";
+
     public static final String DOWNLOAD_ROM_ID = "download_rom_id";
     public static final String DOWNLOAD_GAPPS_ID = "download_gapps_id";
     public static final String DOWNLOAD_ROM_MD5 = "download_rom_md5";

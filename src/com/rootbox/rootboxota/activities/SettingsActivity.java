@@ -16,8 +16,11 @@
 
 package com.rootbox.rootboxota.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -90,6 +93,12 @@ public class SettingsActivity extends PreferenceActivity implements
         updateSummaries();
         addOrRemovePreferences();
 
+        try {
+            findPreference(SettingsHelper.PROPERTY_VERSION).setSummary(getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            findPreference(SettingsHelper.PROPERTY_VERSION).setSummary("Unknown...");
+        }
+
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -116,6 +125,14 @@ public class SettingsActivity extends PreferenceActivity implements
             mRecoveryHelper.selectSdcard(true);
         } else if (SettingsHelper.PROPERTY_EXTERNAL_STORAGE.equals(key)) {
             mRecoveryHelper.selectSdcard(false);
+        } else if (SettingsHelper.PROPERTY_PARANOID.equals(key)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://github.com/ParanoidAndroid"));
+            startActivity(intent);
+        } else if (SettingsHelper.PROPERTY_ROOTBOX.equals(key)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://github.com/Root-Box"));
+            startActivity(intent);
         }
 
         return true;
