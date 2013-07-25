@@ -54,7 +54,7 @@ public class SettingsHelper {
     private static final boolean DEFAULT_EXPERT = false;
     private static final String DEFAULT_CHECK_TIME = "18000000"; // five hours
     private static final String DEFAULT_DOWNLOAD_PATH = new File(Environment
-            .getExternalStorageDirectory(), "paranoidota/").getAbsolutePath();
+            .getExternalStorageDirectory(), "rootboxota/").getAbsolutePath();
     private static final boolean DEFAULT_DOWNLOAD_FINISHED = true;
     private static final String DEFAULT_RECOVERY = "cwmbased";
     private static final String DEFAULT_INTERNAL_STORAGE = "emmc";
