@@ -16,12 +16,12 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rootbox.rootboxota"
-    android:versionCode="12"
-    android:versionName="1.2">
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <original-package android:name="com.rootbox.rootboxota" />
 
-    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="17" />
+    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
