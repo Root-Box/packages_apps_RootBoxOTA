@@ -47,7 +47,7 @@ public class Utils {
 
     public static final String FILES_INFO = "com.rootbox.rootboxota.RomUtils.FILES_INFO";
     public static final String CHECK_DOWNLOADS_FINISHED = "com.rootbox.rootboxota.RomUtils.CHECK_DOWNLOADS_FINISHED";
-    public static final String MOD_VERSION = "ro.modversion";
+    public static final String MOD_VERSION = "ro.rootbox.version";
     public static final int ROM_ALARM_ID = 122303221;
     public static final int GAPPS_ALARM_ID = 122303222;
 
@@ -72,6 +72,49 @@ public class Utils {
             // Runtime error
         }
         return null;
+    }
+
+    public static String getReadableVersionRom(String version) {
+        try {
+            String number = version.substring(version.indexOf("-") + 1,
+                    version.endsWith(".zip") ? version.lastIndexOf(".") : version.lastIndexOf("-"));
+            number = number.substring(number.lastIndexOf('-') + 1);
+
+            if ("v".equalsIgnoreCase(number.substring(0,1))) {
+                number = "Stable - " + number.substring(1);
+            }
+            else {
+                number = "Nightly";
+            }
+
+            String date = version.substring(version.lastIndexOf("-") + 1,
+                    version.endsWith(".zip") ? version.lastIndexOf(".") : version.length());
+
+            SimpleDateFormat curFormater = new SimpleDateFormat("yyyyMMdd");
+            Date dateObj = null;
+            try {
+                dateObj = curFormater.parse(date);
+            } catch (ParseException e) {
+                // ignore
+            }
+            SimpleDateFormat postFormater = new SimpleDateFormat("MMMM dd, yyyy");
+
+            if (dateObj == null) {
+                return number;
+            }
+            String newDateStr = postFormater.format(dateObj);
+
+            StringBuilder b = new StringBuilder(newDateStr);
+            int i = 0;
+            do {
+                b.replace(i, i + 1, b.substring(i, i + 1).toUpperCase());
+                i = b.indexOf(" ", i) + 1;
+            } while (i > 0 && i < b.length());
+            return number + " - " + b.toString();
+        } catch (Exception ex) {
+            // unknown version format
+            return version;
+        }
     }
 
     public static String getReadableVersion(String version) {
