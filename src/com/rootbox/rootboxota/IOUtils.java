@@ -32,7 +32,7 @@ import android.os.StatFs;
 
 public class IOUtils {
 
-    private static final String PREFIX = "RootBox-JB";
+    private static final String PREFIX = "RootBox-JB-";
     private static final String SUFFIX = ".zip";
 
     private static SettingsHelper sSettingsHelper;

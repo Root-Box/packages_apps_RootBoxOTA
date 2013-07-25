@@ -33,7 +33,8 @@ import com.rootbox.rootboxota.http.URLStringReader;
 
 public class GappsUpdater extends Updater {
 
-    private static final String URL_GAPPS = "http://api.paranoidandroid.co/updates/gapps?v=%s";
+    // TODO: when making switch for gapps - check for PA url if needed
+    private static final String URL_GAPPS = "http://api.rootbox.ca/updates/?d=gapps&v=%s";
 
     private String mPlatform;
     private long mVersion = -1L;
