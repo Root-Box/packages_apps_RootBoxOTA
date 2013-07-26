@@ -89,7 +89,8 @@
         <Preference
                 android:key="settings_version"
                 android:summary="@string/settings_version_summary"
-                android:title="@string/settings_version" />
+                android:title="@string/settings_version"
+                android:selectable="false" />
         <Preference
             android:key="settings_paranoid_android"
             android:summary="@string/settings_paranoid_android_summary"
