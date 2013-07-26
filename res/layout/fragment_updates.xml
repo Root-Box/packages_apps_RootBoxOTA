@@ -27,7 +27,7 @@
         android:gravity="center_horizontal"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
-         android:paddingTop="20dp"/>
+        android:paddingTop="20dp" />
 
     <TextView
          android:id="@+id/rom"
@@ -50,6 +50,6 @@
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:gravity="center"
-         android:src="@drawable/rootbox"/>
+         android:src="@drawable/rootbox" />
 
 </LinearLayout>

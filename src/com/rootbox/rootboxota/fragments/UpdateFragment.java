@@ -89,7 +89,7 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
         }
         Resources resources = context.getResources();
         if (mRomUpdater.isScanning() || mGappsUpdater.isScanning()) {
-            mStatusView.setText(R.string.rom_scanning);
+            mStatusView.setText(R.string.rom_scanning_2);
             mRomView.setText(Utils.getProp(Utils.MOD_VERSION));
             mGappsView.setText(resources.getString(R.string.gapps_version,
                     new Object[] {
@@ -102,7 +102,7 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
                     .setText(rom != null && gapp != null ? R.string.rom_gapps_new_version
                             : (rom != null ? R.string.rom_new_version
                                     : (gapp != null ? R.string.gapps_new_version
-                                            : R.string.all_up_to_date)));
+                                            : R.string.all_up_to_date_2)));
             if (rom != null) {
                 mRomView.setText(rom.getFilename());
             } else {
