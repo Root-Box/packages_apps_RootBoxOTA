@@ -125,6 +125,10 @@ public class SettingsActivity extends PreferenceActivity implements
             mRecoveryHelper.selectSdcard(true);
         } else if (SettingsHelper.PROPERTY_EXTERNAL_STORAGE.equals(key)) {
             mRecoveryHelper.selectSdcard(false);
+        } else if (SettingsHelper.PROPERTY_VERSION.equals(key)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://rootbox.ca"));
+            startActivity(intent);
         } else if (SettingsHelper.PROPERTY_PARANOID.equals(key)) {
             Intent intent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://github.com/ParanoidAndroid"));

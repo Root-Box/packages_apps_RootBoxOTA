@@ -53,13 +53,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.SettingsActivity" >
+        <activity
+            android:name=".activities.SettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rootbox.rootboxota.MainActivity" />
         </activity>
 
-        <activity android:name=".activities.RequestFileActivity"
+        <activity
+            android:name=".activities.RequestFileActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <receiver android:name="com.rootbox.rootboxota.NotificationAlarm" />
