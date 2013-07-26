@@ -58,13 +58,13 @@ public class ChangelogFragment extends Fragment {
                     return;
                 }
                 mProgressBar = (ProgressBar) act.findViewById(R.id.progress_bar_loop);
-                mProgressBar.setVisibility(View.INVISIBLE);
+                mProgressBar.setVisibility(View.GONE);
             }
 
             public void onReceivedError(WebView view, int errorCode, String description,
                                         String failingUrl) {
                 mProgressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar_loop);
-                mProgressBar.setVisibility(View.INVISIBLE);
+                mProgressBar.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), R.string.changelog_error, Toast.LENGTH_SHORT).show();
             }
         });

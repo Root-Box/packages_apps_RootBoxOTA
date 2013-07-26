@@ -24,17 +24,26 @@
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <ProgressBar
+                android:id="@+id/progress_bar_download"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminate="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:layout_marginBottom="-7dp"
+                android:layout_gravity="center_horizontal|bottom" />
+    </FrameLayout>
 
     <ProgressBar
-        android:id="@+id/progress_bar_loop"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:indeterminate="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="2dip"
-        android:maxHeight="2dip"
-        android:layout_marginTop="-8dp" />
+            android:id="@+id/progress_bar_loop"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:indeterminate="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-7dp" />
 
     <ListView
         android:id="@+id/left_drawer"

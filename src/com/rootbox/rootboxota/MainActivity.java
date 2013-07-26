@@ -105,7 +105,7 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
     private RecoveryHelper mRecoveryHelper;
     private RebootHelper mRebootHelper;
 
-    private ProgressBar mProgressBar;
+    private ProgressBar mProgressBar, mProgressBarDownload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +121,8 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar_loop);
-        mProgressBar.setVisibility(View.INVISIBLE);
+        mProgressBarDownload = (ProgressBar) findViewById(R.id.progress_bar_download);
+        mProgressBarDownload.setVisibility(View.GONE);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         ListItems content = new ListItems();
@@ -331,7 +332,7 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
     public void versionFound(PackageInfo[] info, boolean isRom) {
         boolean checking = mRomUpdater.isScanning() || mGappsUpdater.isScanning();
         if (!checking) {
-            mProgressBar.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.GONE);
         }
         if (info != null && info.length > 0) {
             if (isRom) {
@@ -365,30 +366,30 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
 
     @Override
     public void onDownloadError() {
-        mProgressBar.setVisibility(View.INVISIBLE);
+        mProgressBarDownload.setVisibility(View.GONE);
     }
 
     @Override
     public void onDownloadProgress(int progress) {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mProgressBarDownload.setVisibility(View.VISIBLE);
         if (progress < 0) {
-            mProgressBar.setIndeterminate(true);
+            mProgressBarDownload.setIndeterminate(true);
         } else {
-            mProgressBar.setIndeterminate(false);
-            mProgressBar.setProgress(progress * 100);
+            mProgressBarDownload.setIndeterminate(false);
+            mProgressBarDownload.setProgress(progress);
         }
 
-        if(progress < 100) {
-            mProgressBar.setVisibility(View.VISIBLE);
+        if(progress <= 100) {
+            mProgressBarDownload.setVisibility(View.VISIBLE);
         }
         else {
-            mProgressBar.setVisibility(View.INVISIBLE);
+            mProgressBarDownload.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onDownloadFinished(Uri uri, final String md5, boolean isRom) {
-        mProgressBar.setVisibility(View.INVISIBLE);
+        mProgressBarDownload.setVisibility(View.GONE);
         if (uri != null) {
             String filePath = uri.toString().replace("file://", "");
             if (filePath == null || !filePath.endsWith(".zip")) {
