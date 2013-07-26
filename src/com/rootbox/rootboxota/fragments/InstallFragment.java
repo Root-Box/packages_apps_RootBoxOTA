@@ -59,10 +59,10 @@ public class InstallFragment extends android.preference.PreferenceFragment
         return files.toArray(new String[files.size()]);
     }
 
-    private Context mContext;
-    private OnPreferenceClickListener mListener;
-    private PreferenceCategory mLocalRoot;
-    private PreferenceCategory mExtrasRoot;
+    private static Context mContext;
+    private static OnPreferenceClickListener mListener;
+    private static PreferenceCategory mLocalRoot;
+    private static PreferenceCategory mExtrasRoot;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,7 +102,7 @@ public class InstallFragment extends android.preference.PreferenceFragment
         update();
     }
 
-    private void update() {
+    public static void update() {
         mLocalRoot.removeAll();
         mExtrasRoot.removeAll();
         for (File file : sFiles) {
@@ -120,7 +120,7 @@ public class InstallFragment extends android.preference.PreferenceFragment
         }
     }
 
-    private String getSummary(File file, boolean isDownloaded) {
+    private static String getSummary(File file, boolean isDownloaded) {
         if (isDownloaded) {
             String name = file.getName();
             name = name.replace("-full", "").replace("-signed", "");
