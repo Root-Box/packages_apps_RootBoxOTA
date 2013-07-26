@@ -239,6 +239,7 @@ public class Utils {
                 .getSystemService(Service.NOTIFICATION_SERVICE);
 
         notif.flags |= Notification.FLAG_AUTO_CANCEL;
+        notif.defaults |= Notification.DEFAULT_SOUND;
 
         notificationManager.notify(notificationId, notif);
     }
