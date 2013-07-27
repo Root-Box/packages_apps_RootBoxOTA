@@ -30,26 +30,26 @@
         android:paddingTop="20dp" />
 
     <TextView
-         android:id="@+id/rom"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center_horizontal"
-         android:textColor="#FFFFFF"
-         android:textSize="16sp" />
+        android:id="@+id/rom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
     <TextView
-         android:id="@+id/gapps"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:gravity="center_horizontal"
-         android:textColor="#FFFFFF"
-         android:textSize="16sp" />
+        android:id="@+id/gapps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
     <ImageView
-         android:id="@+id/icon"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:gravity="center"
-         android:src="@drawable/rootbox" />
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:src="@drawable/rootbox" />
 
 </LinearLayout>

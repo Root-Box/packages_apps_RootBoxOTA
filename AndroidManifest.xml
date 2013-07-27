@@ -38,7 +38,8 @@
             android:name="com.rootbox.rootboxota.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:hardwareAccelerated="true">
+            android:hardwareAccelerated="true"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,14 +48,16 @@
 
         <activity
             android:name=".activities.SystemActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar">
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".activities.SettingsActivity">
+            android:name=".activities.SettingsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rootbox.rootboxota.MainActivity" />
@@ -62,7 +65,8 @@
 
         <activity
             android:name=".activities.RequestFileActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <receiver android:name="com.rootbox.rootboxota.NotificationAlarm" />
         <receiver
