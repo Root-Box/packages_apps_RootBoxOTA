@@ -50,7 +50,8 @@
     <string name="check_gapps_updates_error">Error checking for google apps updates</string>
     <string name="no_updates">No updates found.</string>
     <string name="check_for_updates_long">Check for updates</string>
-    <string name="system_update">A new system update was found and is ready to download.\nPlease check the notifications that may have appeared. They will lead you to RootBox OTA from where you will be able to download and/or install the system update.\n\nNewest update(s) found:\n%1$s</string>
+    <string name="download_and_install">Download &amp; Install</string>
+    <string name="system_update">A new system update was found and it\'s ready to be downloaded and installed.</string>
 
     <!-- DOWNLOADS/NOTIFICATIONS -->
     <string name="download_title">Downloading %1$s...</string>

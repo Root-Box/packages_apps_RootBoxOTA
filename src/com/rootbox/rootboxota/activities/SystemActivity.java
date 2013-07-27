@@ -23,8 +23,11 @@ import com.rootbox.rootboxota.updater.Updater.PackageInfo;
 import com.rootbox.rootboxota.updater.Updater.UpdaterListener;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,7 +43,7 @@ public class SystemActivity extends Activity implements UpdaterListener {
 
     private TextView mTitle;
     private TextView mMessage;
-    private Button mButton;
+    private Button mButton, mDownloadInstall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class SystemActivity extends Activity implements UpdaterListener {
         mMessage = (TextView) findViewById(R.id.message);
         mButton = (Button) findViewById(R.id.button);
         mButton.setVisibility(View.GONE);
+        mDownloadInstall = (Button) findViewById(R.id.button_install_download);
+        mDownloadInstall.setVisibility(View.GONE);
 
         mButton.setOnClickListener(new OnClickListener() {
 
@@ -63,12 +68,23 @@ public class SystemActivity extends Activity implements UpdaterListener {
 
         });
 
+        mDownloadInstall.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setComponent(new ComponentName("com.rootbox.rootboxota", "com.rootbox.rootboxota.MainActivity"));
+                startActivity(intent);
+            }
+
+        });
+
         mRom = null;
         mGapps = null;
 
-        mRomUpdater = new RomUpdater(this, true);
+        mRomUpdater = new RomUpdater(this, false);
         mRomUpdater.addUpdaterListener(this);
-        mGappsUpdater = new GappsUpdater(this, true);
+        mGappsUpdater = new GappsUpdater(this, false);
         mGappsUpdater.addUpdaterListener(this);
 
         mRomUpdater.check();
@@ -100,20 +116,19 @@ public class SystemActivity extends Activity implements UpdaterListener {
             mMessage.setText(R.string.rom_scanning);
             mButton.setVisibility(View.GONE);
         } else {
-            mButton.setVisibility(View.VISIBLE);
+            mDownloadInstall.setVisibility(View.VISIBLE);
             if (mRom != null && mGapps != null) {
                 mTitle.setText(R.string.rom_gapps_new_version);
-                mMessage.setText(res.getString(R.string.system_update,
-                        new Object[] { mRom.getFilename() + "\n" + mGapps.getFilename() }));
+                mMessage.setText(res.getString(R.string.system_update));
             } else if (mRom != null) {
                 mTitle.setText(R.string.rom_new_version);
-                mMessage.setText(res.getString(R.string.system_update,
-                        new Object[] { mRom.getFilename() }));
+                mMessage.setText(res.getString(R.string.system_update));
             } else if (mGapps != null) {
                 mTitle.setText(R.string.gapps_new_version);
-                mMessage.setText(res.getString(R.string.system_update,
-                        new Object[] { mGapps.getFilename() }));
+                mMessage.setText(res.getString(R.string.system_update));
             } else {
+                mDownloadInstall.setVisibility(View.GONE);
+                mButton.setVisibility(View.VISIBLE);
                 mTitle.setText(R.string.all_up_to_date);
                 mMessage.setText(R.string.no_updates);
             }
