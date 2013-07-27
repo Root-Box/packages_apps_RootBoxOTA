@@ -65,7 +65,7 @@ public class SettingsHelper {
     private static final String DEFAULT_EXTERNAL_STORAGE = "sdcard";
     private static final Set<String> DEFAULT_SHOW_OPTIONS = new HashSet<String>();
 
-    private SharedPreferences settings;
+    private static SharedPreferences settings;
     private Context mContext;
 
     public SettingsHelper(Context context) {
@@ -131,11 +131,11 @@ public class SettingsHelper {
         return settings.getBoolean(PROPERTY_DOWNLOAD_FINISHED, DEFAULT_DOWNLOAD_FINISHED);
     }
 
-    public long getCheckTimeRom() {
+    public static long getCheckTimeRom() {
         return Long.parseLong(settings.getString(PROPERTY_CHECK_TIME_ROM, DEFAULT_CHECK_TIME));
     }
 
-    public long getCheckTimeGapps() {
+    public static long getCheckTimeGapps() {
         return Long.parseLong(settings.getString(PROPERTY_CHECK_TIME_GAPPS, DEFAULT_CHECK_TIME));
     }
 

@@ -26,6 +26,7 @@ import android.content.Context;
 
 import com.rootbox.rootboxota.R;
 import com.rootbox.rootboxota.Utils;
+import com.rootbox.rootboxota.helpers.SettingsHelper;
 import com.rootbox.rootboxota.http.URLStringReader;
 
 public class RomUpdater extends Updater {
@@ -102,7 +103,7 @@ public class RomUpdater extends Updater {
             }
             lastRoms = list.toArray(new PackageInfo[list.size()]);
             if (list.size() > 0) {
-                if (mFromAlarm) {
+                if (mFromAlarm && SettingsHelper.getCheckTimeRom() > 0) {
                     Utils.showNotification(getContext(), lastRoms, ROM_NOTIFICATION_ID,
                             R.string.new_rom_found_title);
                 }
