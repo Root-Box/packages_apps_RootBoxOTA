@@ -30,6 +30,8 @@
     <string name="gapps">Google apps</string>
     <string name="local">Downloaded files</string>
     <string name="extras">Additional files</string>
+    <string name="no_files_added">No files added so far...</string>
+    <string name="no_files_added_extra">No files added so far...\nDon\'t forget to attach your Google apps package!</string>
 
     <!-- OVERVIEW -->
     <string name="all_up_to_date">You\'re up to date!</string>
@@ -39,13 +41,14 @@
     <string name="gapps_new_version">New google apps version found!</string>
     <string name="rom_scanning">Checking...</string>
     <string name="rom_scanning_2">Checking...\n</string>
-    <string name="gapps_version">Google apps %1$s</string>
+    <string name="rom_name">RootBox: %1$s</string>
+    <string name="gapps_version">Google apps: %1$s</string>
     <string name="rom_outdated">Your ROM is outdated!</string>
-    <string name="gapps_outdated">Your google apps are outdated!</string>
-    <string name="no_rom_updates">No ROM updates found</string>
-    <string name="no_gapps_updates">No google apps updates found</string>
-    <string name="check_rom_updates_no_new">No ROM updates found</string>
+    <string name="gapps_outdated">Your Google apps are outdated!</string>
+    <string name="no_rom_updates">No ROM updates found...</string>
+    <string name="no_gapps_updates">No Google apps updates found...</string>
     <string name="check_rom_updates_error">Error checking for ROM updates</string>
+    <string name="check_rom_updates_no_new">No ROM updates found</string>
     <string name="check_gapps_updates_no_new">No google apps updates found</string>
     <string name="check_gapps_updates_error">Error checking for google apps updates</string>
     <string name="no_updates">No updates found.</string>
@@ -86,10 +89,11 @@
     <string name="settings_update">Updates</string>
     <string name="settings_stable_only_title">Get only stable updates</string>
     <string name="settings_stable_only_summary">Untick this option if you want to get nightly ROM updates also, otherwise - you will get only stable ROM updates</string>
-    <string name="settings_gapps_version_title">Google apps version source</string>
-    <string name="settings_gapps_version_summary">Select your preferred Google apps version source to be checked</string>
+    <string name="settings_gapps_version_title">Google apps updates source</string>
+    <string name="settings_gapps_version_summary">Select your preferred Google apps updates source to be checked</string>
     <string name="settings_gapps_version_rootbox_official">RootBox (official)</string>
     <string name="settings_gapps_version_paranoid_android">Paranoid Android</string>
+    <string name="settings_gapps_version_other">Other... (disabled)</string>
     <string name="settings_checktimerom_title">ROM update check frequency</string>
     <string name="settings_checktimerom_summary">Specify the time between each ROM update check</string>
     <string name="settings_checktimegapps_title">Google apps update check frequency</string>

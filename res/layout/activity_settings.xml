@@ -34,7 +34,7 @@
                 android:summary="@string/settings_stable_only_summary" />
 
         <ListPreference
-                android:key="gappsversion"
+                android:key="gappssource"
                 android:title="@string/settings_gapps_version_title"
                 android:summary="@string/settings_gapps_version_summary"
                 android:dialogTitle="@string/settings_gapps_version_title"

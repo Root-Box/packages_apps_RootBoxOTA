@@ -118,13 +118,36 @@ public class InstallFragment extends android.preference.PreferenceFragment
                 mExtrasRoot.addPreference(pref);
             }
         }
+
+        if(mLocalRoot.getPreferenceCount() == 0) {
+            Preference pref0 = new Preference(mContext);
+            pref0.setSummary(R.string.no_files_added);
+            pref0.setIcon(R.drawable.ic_info);
+            pref0.setEnabled(false);
+            pref0.setSelectable(false);
+            mLocalRoot.addPreference(pref0);
+        }
+
+        if(mExtrasRoot.getPreferenceCount() == 0) {
+            Preference pref1 = new Preference(mContext);
+            pref1.setSummary(R.string.no_files_added_extra);
+            pref1.setIcon(R.drawable.ic_info);
+            pref1.setEnabled(false);
+            pref1.setSelectable(false);
+            mExtrasRoot.addPreference(pref1);
+        }
     }
 
     private static String getSummary(File file, boolean isDownloaded) {
         if (isDownloaded) {
             String name = file.getName();
-            name = name.replace("-full", "").replace("-signed", "").replace("pa_", "");
-            return Utils.getReadableVersion(name);
+            if(IOUtils.isRom(name)) {
+                return Utils.getReadableVersionRom(name)+ " - " + IOUtils.humanReadableByteCount(file.length(), false);
+            }
+            else if(IOUtils.isGapps(name)) {
+                return Utils.getReadableVersion(name) + " - " + IOUtils.humanReadableByteCount(file.length(), false);
+            }
+            return IOUtils.humanReadableByteCount(file.length(), false);
         } else {
             String path = file.getAbsolutePath();
             return path.substring(0, path.lastIndexOf("/"));

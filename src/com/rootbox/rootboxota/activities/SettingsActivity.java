@@ -46,7 +46,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private SettingsHelper mSettingsHelper;
     private RecoveryHelper mRecoveryHelper;
     private CheckBoxPreference mExpertMode;
-    private ListPreference mGappsVersion;
+    private ListPreference mGappsSource;
     private CheckBoxPreference mStableOnly;
     private ListPreference mCheckTimeRom;
     private ListPreference mCheckTimeGapps;
@@ -73,7 +73,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         mExpertMode = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_EXPERT);
         mStableOnly = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_STABLE_ONLY);
-        mGappsVersion = (ListPreference) findPreference(SettingsHelper.PROPERTY_GAPPS_VERSION);
+        mGappsSource = (ListPreference) findPreference(SettingsHelper.PROPERTY_GAPPS_SOURCE);
         mCheckTimeRom = (ListPreference) findPreference(SettingsHelper.PROPERTY_CHECK_TIME_ROM);
         mCheckTimeGapps = (ListPreference) findPreference(SettingsHelper.PROPERTY_CHECK_TIME_GAPPS);
         mDownloadPath = findPreference(SettingsHelper.PROPERTY_DOWNLOAD_PATH);
@@ -89,7 +89,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
 
         mExpertMode.setDefaultValue(mSettingsHelper.getExpertMode());
-        mGappsVersion.setValue(String.valueOf(mSettingsHelper.getGappsVersion()));
+        mGappsSource.setValue(String.valueOf(mSettingsHelper.getGappsSource()));
         mStableOnly.setChecked(mSettingsHelper.getStableOnly());
         mCheckTimeRom.setValue(String.valueOf(mSettingsHelper.getCheckTimeRom()));
         mCheckTimeGapps.setValue(String.valueOf(mSettingsHelper.getCheckTimeGapps()));
@@ -154,7 +154,7 @@ public class SettingsActivity extends PreferenceActivity implements
             addOrRemovePreferences();
         } else if (SettingsHelper.PROPERTY_CHECK_TIME_ROM.equals(key) || SettingsHelper.PROPERTY_STABLE_ONLY.equals(key)) {
             Utils.setAlarm(this, mSettingsHelper.getCheckTimeRom(), false, true);
-        } else if (SettingsHelper.PROPERTY_CHECK_TIME_GAPPS.equals(key) || SettingsHelper.PROPERTY_GAPPS_VERSION.equals(key)) {
+        } else if (SettingsHelper.PROPERTY_CHECK_TIME_GAPPS.equals(key) || SettingsHelper.PROPERTY_GAPPS_SOURCE.equals(key)) {
             Utils.setAlarm(this, mSettingsHelper.getCheckTimeGapps(), false, false);
         }
 

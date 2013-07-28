@@ -90,31 +90,42 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
         Resources resources = context.getResources();
         if (mRomUpdater.isScanning() || mGappsUpdater.isScanning()) {
             mStatusView.setText(R.string.rom_scanning_2);
-            mRomView.setText(Utils.getProp(Utils.MOD_VERSION));
+            mRomView.setText(resources.getString(R.string.rom_name,
+                    new Object[] {
+                            Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION))
+                    }));
             mGappsView.setText(resources.getString(R.string.gapps_version,
                     new Object[] {
-                            mGappsUpdater.getVersion()
+                            Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion())
                     }));
         } else {
             PackageInfo rom = roms != null && roms.length > 0 ? roms[0] : null;
             PackageInfo gapp = gapps != null && gapps.length > 0 ? gapps[0] : null;
-            mStatusView
-                    .setText(rom != null && gapp != null ? R.string.rom_gapps_new_version
+            mStatusView.setText(rom != null && gapp != null ? R.string.rom_gapps_new_version
                             : (rom != null ? R.string.rom_new_version
                                     : (gapp != null ? R.string.gapps_new_version
                                             : R.string.all_up_to_date_2)));
             if (rom != null) {
-                mRomView.setText(rom.getFilename());
+                mRomView.setText(resources.getString(R.string.rom_name,
+                    new Object[] {
+                        Utils.getReadableVersionRom(rom.getFilename())
+                    }));
             } else {
-                mRomView.setText(Utils.getProp(Utils.MOD_VERSION));
+                mRomView.setText(resources.getString(R.string.rom_name,
+                    new Object[] {
+                        Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION))
+                    }));
             }
             if (gapp != null) {
-                mGappsView.setText(gapp.getFilename());
+                mGappsView.setText(resources.getString(R.string.gapps_version,
+                    new Object[] {
+                        Utils.getReadableVersion(gapp.getFilename())
+                    }));
             } else {
                 mGappsView.setText(resources.getString(R.string.gapps_version,
-                        new Object[] {
-                                mGappsUpdater.getVersion()
-                        }));
+                    new Object[] {
+                        Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion())
+                    }));
             }
         }
     }

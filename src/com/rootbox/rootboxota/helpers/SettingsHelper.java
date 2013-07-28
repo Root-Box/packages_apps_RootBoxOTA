@@ -37,7 +37,7 @@ public class SettingsHelper {
 
     public static final String PROPERTY_EXPERT = "expertmode";
     public static final String PROPERTY_STABLE_ONLY = "stableonly";
-    public static final String PROPERTY_GAPPS_VERSION = "gappsversion";
+    public static final String PROPERTY_GAPPS_SOURCE = "gappssource";
     public static final String PROPERTY_CHECK_TIME_ROM = "checktimerom";
     public static final String PROPERTY_CHECK_TIME_GAPPS = "checktimegapps";
     public static final String PROPERTY_DOWNLOAD_PATH = "downloadpath";
@@ -61,7 +61,7 @@ public class SettingsHelper {
     private static final boolean DEFAULT_STABLE_ONLY = true;
     public static final String DEFAULT_STABLE_ONLY_URL_TRUE = "http://api.rootbox.ca/updates/?d=%s&v=%s&s=1";
     public static final String DEFAULT_STABLE_ONLY_URL_FALSE = "http://api.rootbox.ca/updates/?d=%s&v=%s";
-    private static final String DEFAULT_GAPPS_VERSION = "http://api.rootbox.ca/updates/gapps/?v=%s";
+    private static final String DEFAULT_GAPPS_SOURCE = "http://api.rootbox.ca/updates/gapps/?v=%s";
     private static final String DEFAULT_CHECK_TIME = "18000000"; // five hours
     private static final String DEFAULT_DOWNLOAD_PATH = new File(Environment
             .getExternalStorageDirectory(), "rootboxota/").getAbsolutePath();
@@ -95,8 +95,8 @@ public class SettingsHelper {
         return DEFAULT_STABLE_ONLY_URL_TRUE;
     }
 
-    public static String getGappsVersion() {
-        return settings.getString(PROPERTY_GAPPS_VERSION, DEFAULT_GAPPS_VERSION);
+    public static String getGappsSource() {
+        return settings.getString(PROPERTY_GAPPS_SOURCE, DEFAULT_GAPPS_SOURCE);
     }
 
     public String getInternalStorage() {

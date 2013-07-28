@@ -119,9 +119,10 @@ public class Utils {
 
     public static String getReadableVersion(String version) {
         try {
-            version = version.replace("-jb", "-4.2");
+            version = version.replace("-jb", "-4.2").replace("-full", "").replace("-signed", "").replace("pa_", "");
             String number = version.substring(version.indexOf("-") + 1, version.lastIndexOf("-"));
             number = number.substring(0,1) + "." + number.substring(1);
+            number = number.replace("..", ".");
             String date = version.substring(version.lastIndexOf("-") + 1,
                     version.endsWith(".zip") ? version.lastIndexOf(".") : version.length());
 

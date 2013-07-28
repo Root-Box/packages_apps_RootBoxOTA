@@ -171,7 +171,7 @@ public class GappsUpdater extends Updater {
             sSettingsHelper = new SettingsHelper(mContext);
         }
         fireStartChecking();
-        new URLStringReader(this).execute(String.format(sSettingsHelper.getGappsVersion(), new Object[] {
+        new URLStringReader(this).execute(String.format(sSettingsHelper.getGappsSource(), new Object[] {
                 getPlatform() + getVersion() }));
     }
 
