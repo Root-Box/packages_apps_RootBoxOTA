@@ -33,14 +33,17 @@ import com.rootbox.rootboxota.helpers.SettingsHelper;
 import com.rootbox.rootboxota.http.URLStringReader;
 
 public class GappsUpdater extends Updater {
+    private Context mContext;
     private String mPlatform;
     private long mVersion = -1L;
     private boolean mCanUpdate;
     private boolean mFromAlarm;
     private boolean mScanning;
+    private static SettingsHelper sSettingsHelper;
 
     public GappsUpdater(Context context, boolean fromAlarm) {
         super(context);
+        mContext = context;
         mFromAlarm = fromAlarm;
 
         File file = new File("/system/etc/g.prop");
@@ -84,6 +87,9 @@ public class GappsUpdater extends Updater {
     @Override
     public void onReadEnd(String buffer) {
         mScanning = false;
+        if (sSettingsHelper == null) {
+            sSettingsHelper = new SettingsHelper(mContext);
+        }
         try {
             PackageInfo[] lastGapps = null;
             setLastUpdates(null);
@@ -104,7 +110,7 @@ public class GappsUpdater extends Updater {
             }
             lastGapps = packagesList.toArray(new PackageInfo[packagesList.size()]);
             if (lastGapps.length > 0) {
-                if (mFromAlarm && SettingsHelper.getCheckTimeGapps() > 0) {
+                if (mFromAlarm && sSettingsHelper.getCheckTimeGapps() > 0) {
                     Utils.showNotification(getContext(), lastGapps, GAPPS_NOTIFICATION_ID,
                             R.string.new_gapps_found_title);
                 }
@@ -161,8 +167,11 @@ public class GappsUpdater extends Updater {
     @Override
     public void check() {
         mScanning = true;
+        if (sSettingsHelper == null) {
+            sSettingsHelper = new SettingsHelper(mContext);
+        }
         fireStartChecking();
-        new URLStringReader(this).execute(String.format(SettingsHelper.getGappsVersion(), new Object[] {
+        new URLStringReader(this).execute(String.format(sSettingsHelper.getGappsVersion(), new Object[] {
                 getPlatform() + getVersion() }));
     }
 

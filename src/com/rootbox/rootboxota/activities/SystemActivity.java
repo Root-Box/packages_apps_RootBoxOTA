@@ -16,22 +16,21 @@
 
 package com.rootbox.rootboxota.activities;
 
-import com.rootbox.rootboxota.R;
-import com.rootbox.rootboxota.updater.GappsUpdater;
-import com.rootbox.rootboxota.updater.RomUpdater;
-import com.rootbox.rootboxota.updater.Updater.PackageInfo;
-import com.rootbox.rootboxota.updater.Updater.UpdaterListener;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.rootbox.rootboxota.R;
+import com.rootbox.rootboxota.updater.GappsUpdater;
+import com.rootbox.rootboxota.updater.RomUpdater;
+import com.rootbox.rootboxota.updater.Updater.PackageInfo;
+import com.rootbox.rootboxota.updater.Updater.UpdaterListener;
 
 public class SystemActivity extends Activity implements UpdaterListener {
 

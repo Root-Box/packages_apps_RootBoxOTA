@@ -30,14 +30,17 @@ import com.rootbox.rootboxota.helpers.SettingsHelper;
 import com.rootbox.rootboxota.http.URLStringReader;
 
 public class RomUpdater extends Updater {
+    private Context mContext;
 
     private static final String URL = "http://api.rootbox.ca/updates/?d=%s&v=%s";
+    private static SettingsHelper sSettingsHelper;
 
     private boolean mScanning = false;
     private boolean mFromAlarm;
 
     public RomUpdater(Context context, boolean fromAlarm) {
         super(context);
+        mContext = context;
         mFromAlarm = fromAlarm;
     }
 
@@ -82,6 +85,9 @@ public class RomUpdater extends Updater {
 
     @Override
     public void onReadEnd(String buffer) {
+        if (sSettingsHelper == null) {
+            sSettingsHelper = new SettingsHelper(mContext);
+        }
         try {
             mScanning = false;
             PackageInfo[] lastRoms = null;
@@ -103,7 +109,7 @@ public class RomUpdater extends Updater {
             }
             lastRoms = list.toArray(new PackageInfo[list.size()]);
             if (list.size() > 0) {
-                if (mFromAlarm && SettingsHelper.getCheckTimeRom() > 0) {
+                if (mFromAlarm && sSettingsHelper.getCheckTimeRom() > 0) {
                     Utils.showNotification(getContext(), lastRoms, ROM_NOTIFICATION_ID,
                             R.string.new_rom_found_title);
                 }
