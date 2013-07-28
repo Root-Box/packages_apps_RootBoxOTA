@@ -33,8 +33,6 @@ import android.os.StatFs;
 public class IOUtils {
 
     private static final String PREFIX = "RootBox-JB-";
-    private static final String PREFIX_GAPPS = "gapps-";
-    private static final String PREFIX_GAPPS_PA = "pa_gapps-";
     private static final String SUFFIX = ".zip";
 
     private static SettingsHelper sSettingsHelper;
@@ -46,7 +44,9 @@ public class IOUtils {
         File downloads = initSettingsHelper(context);
         ArrayList<String> list = new ArrayList<String>();
         for(File f : downloads.listFiles()) {
-            list.add(f.getName());
+            if(isRom(f.getName()) || isGapps(f.getName())) {
+                list.add(f.getName());
+            }
         }
         return list.toArray(new String[list.size()]);
     }
@@ -74,7 +74,7 @@ public class IOUtils {
     }
 
     public static boolean isGapps(String name) {
-        return name.replace(PREFIX_GAPPS_PA, PREFIX_GAPPS).startsWith(PREFIX_GAPPS) && name.endsWith(SUFFIX);
+        return name.toLowerCase().contains("gapps") && name.endsWith(SUFFIX);
     }
 
     public static boolean isExternalStorageAvailable() {

@@ -30,8 +30,8 @@
     <string name="gapps">Google apps</string>
     <string name="local">Downloaded files</string>
     <string name="extras">Additional files</string>
-    <string name="no_files_added">No files added so far...</string>
-    <string name="no_files_added_extra">No files added so far...\nDon\'t forget to attach your Google apps package!</string>
+    <string name="no_files_added">No files added so far...\nDon\'t forget to attach your Google apps package!</string>
+    <string name="no_files_added_extra">No files added so far...\nYou can also attach your prefered custom kernel here or any other flashable ZIP file.</string>
 
     <!-- OVERVIEW -->
     <string name="all_up_to_date">You\'re up to date!</string>
