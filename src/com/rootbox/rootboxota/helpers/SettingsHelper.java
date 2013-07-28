@@ -38,6 +38,7 @@ public class SettingsHelper {
     public static final String PROPERTY_EXPERT = "expertmode";
     public static final String PROPERTY_CHECK_TIME_ROM = "checktimerom";
     public static final String PROPERTY_CHECK_TIME_GAPPS = "checktimegapps";
+    public static final String PROPERTY_GAPPS_VERSION = "gappsversion";
     public static final String PROPERTY_DOWNLOAD_PATH = "downloadpath";
     public static final String PROPERTY_DOWNLOAD_FINISHED = "downloadfinished";
     public static final String PROPERTY_RECOVERY = "recovery";
@@ -57,6 +58,7 @@ public class SettingsHelper {
 
     private static final boolean DEFAULT_EXPERT = false;
     private static final String DEFAULT_CHECK_TIME = "18000000"; // five hours
+    private static final String DEFAULT_GAPPS_VERSION = "http://api.rootbox.ca/updates/gapps/?v=%s";
     private static final String DEFAULT_DOWNLOAD_PATH = new File(Environment
             .getExternalStorageDirectory(), "rootboxota/").getAbsolutePath();
     private static final boolean DEFAULT_DOWNLOAD_FINISHED = true;
@@ -137,6 +139,10 @@ public class SettingsHelper {
 
     public static long getCheckTimeGapps() {
         return Long.parseLong(settings.getString(PROPERTY_CHECK_TIME_GAPPS, DEFAULT_CHECK_TIME));
+    }
+
+    public static String getGappsVersion() {
+        return settings.getString(PROPERTY_GAPPS_VERSION, DEFAULT_GAPPS_VERSION);
     }
 
     public void setDownloadRomId(Long id, String md5) {

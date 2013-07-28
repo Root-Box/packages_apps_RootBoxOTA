@@ -44,6 +44,14 @@
             android:entries="@array/time_notifications_entries"
             android:entryValues="@array/time_notifications_values" />
 
+        <ListPreference
+                android:key="gappsversion"
+                android:title="@string/settings_gapps_version_title"
+                android:summary="@string/settings_gapps_version_summary"
+                android:dialogTitle="@string/settings_gapps_version_summary"
+                android:entries="@array/gaaps_version_entries"
+                android:entryValues="@array/gapps_version_values" />
+
         <Preference
             android:key="downloadpath"
             android:title="@string/settings_download_path" />

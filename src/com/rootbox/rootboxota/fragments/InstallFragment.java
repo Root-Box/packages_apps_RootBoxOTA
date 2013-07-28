@@ -123,7 +123,7 @@ public class InstallFragment extends android.preference.PreferenceFragment
     private static String getSummary(File file, boolean isDownloaded) {
         if (isDownloaded) {
             String name = file.getName();
-            name = name.replace("-full", "").replace("-signed", "");
+            name = name.replace("-full", "").replace("-signed", "").replace("pa_", "");
             return Utils.getReadableVersion(name);
         } else {
             String path = file.getAbsolutePath();

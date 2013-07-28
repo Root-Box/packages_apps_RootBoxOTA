@@ -33,10 +33,6 @@ import com.rootbox.rootboxota.helpers.SettingsHelper;
 import com.rootbox.rootboxota.http.URLStringReader;
 
 public class GappsUpdater extends Updater {
-
-    // TODO: when making switch for gapps - check for PA url if needed
-    private static final String URL_GAPPS = "http://api.paranoidandroid.co/updates/gapps?v=%s";
-
     private String mPlatform;
     private long mVersion = -1L;
     private boolean mCanUpdate;
@@ -166,7 +162,7 @@ public class GappsUpdater extends Updater {
     public void check() {
         mScanning = true;
         fireStartChecking();
-        new URLStringReader(this).execute(String.format(URL_GAPPS, new Object[] {
+        new URLStringReader(this).execute(String.format(SettingsHelper.getGappsVersion(), new Object[] {
                 getPlatform() + getVersion() }));
     }
 

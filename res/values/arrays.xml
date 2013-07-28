@@ -42,6 +42,16 @@
         <item>86400000</item>
     </string-array>
 
+    <!-- GAPPS VERSION TO BE CHECKED -->
+    <string-array name="gaaps_version_entries">
+        <item>@string/settings_gapps_version_rootbox_official</item>
+        <item>@string/settings_gapps_version_paranoid_android</item>
+    </string-array>
+    <string-array name="gapps_version_values" translatable="false">
+        <item>http://api.rootbox.ca/updates/gapps/?v=%s</item>
+        <item>http://api.paranoidandroid.co/updates/gapps/?v=%s</item>
+    </string-array>
+
     <!-- OPTIONS BEFORE FLASHING -->
     <string-array name="install_options_entries">
         <item>@string/install_option_backup</item>

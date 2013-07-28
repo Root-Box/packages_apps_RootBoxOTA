@@ -81,7 +81,7 @@ public class Utils {
             number = number.substring(number.lastIndexOf('-') + 1);
 
             if ("v".equalsIgnoreCase(number.substring(0,1))) {
-                number = "Stable - " + number.substring(1);
+                number = number.substring(1) + " - Stable";
             }
             else {
                 number = "Nightly";
@@ -119,10 +119,12 @@ public class Utils {
 
     public static String getReadableVersion(String version) {
         try {
+            version = version.replace("-jb", "-4.2");
             String number = version.substring(version.indexOf("-") + 1, version.lastIndexOf("-"));
+            number = number.substring(0,1) + "." + number.substring(1);
             String date = version.substring(version.lastIndexOf("-") + 1,
                     version.endsWith(".zip") ? version.lastIndexOf(".") : version.length());
-    
+
             SimpleDateFormat curFormater = new SimpleDateFormat("yyyyMMdd");
             Date dateObj = null;
             try {
@@ -131,12 +133,12 @@ public class Utils {
                 // ignore
             }
             SimpleDateFormat postFormater = new SimpleDateFormat("MMMM dd, yyyy");
-    
+
             if (dateObj == null) {
                 return number;
             }
             String newDateStr = postFormater.format(dateObj);
-    
+
             StringBuilder b = new StringBuilder(newDateStr);
             int i = 0;
             do {
