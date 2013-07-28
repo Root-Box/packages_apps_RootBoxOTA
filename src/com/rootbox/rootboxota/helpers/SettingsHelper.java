@@ -36,9 +36,10 @@ public class SettingsHelper {
             INSTALL_WIPEDATA, INSTALL_WIPECACHES };
 
     public static final String PROPERTY_EXPERT = "expertmode";
+    public static final String PROPERTY_STABLE_ONLY = "stableonly";
+    public static final String PROPERTY_GAPPS_VERSION = "gappsversion";
     public static final String PROPERTY_CHECK_TIME_ROM = "checktimerom";
     public static final String PROPERTY_CHECK_TIME_GAPPS = "checktimegapps";
-    public static final String PROPERTY_GAPPS_VERSION = "gappsversion";
     public static final String PROPERTY_DOWNLOAD_PATH = "downloadpath";
     public static final String PROPERTY_DOWNLOAD_FINISHED = "downloadfinished";
     public static final String PROPERTY_RECOVERY = "recovery";
@@ -57,8 +58,11 @@ public class SettingsHelper {
     public static final String DOWNLOAD_GAPPS_MD5 = "download_gapps_md5";
 
     private static final boolean DEFAULT_EXPERT = false;
-    private static final String DEFAULT_CHECK_TIME = "18000000"; // five hours
+    private static final boolean DEFAULT_STABLE_ONLY = true;
+    public static final String DEFAULT_STABLE_ONLY_URL_TRUE = "http://api.rootbox.ca/updates/?d=%s&v=%s&s=1";
+    public static final String DEFAULT_STABLE_ONLY_URL_FALSE = "http://api.rootbox.ca/updates/?d=%s&v=%s";
     private static final String DEFAULT_GAPPS_VERSION = "http://api.rootbox.ca/updates/gapps/?v=%s";
+    private static final String DEFAULT_CHECK_TIME = "18000000"; // five hours
     private static final String DEFAULT_DOWNLOAD_PATH = new File(Environment
             .getExternalStorageDirectory(), "rootboxota/").getAbsolutePath();
     private static final boolean DEFAULT_DOWNLOAD_FINISHED = true;
@@ -78,6 +82,21 @@ public class SettingsHelper {
 
     public boolean getExpertMode() {
         return settings.getBoolean(PROPERTY_EXPERT, DEFAULT_EXPERT);
+    }
+
+    public boolean getStableOnly() {
+        return settings.getBoolean(PROPERTY_STABLE_ONLY, DEFAULT_STABLE_ONLY);
+    }
+
+    public static String getRomVersion() {
+        if(!settings.getBoolean(PROPERTY_STABLE_ONLY, DEFAULT_STABLE_ONLY)) {
+            return DEFAULT_STABLE_ONLY_URL_FALSE;
+        }
+        return DEFAULT_STABLE_ONLY_URL_TRUE;
+    }
+
+    public static String getGappsVersion() {
+        return settings.getString(PROPERTY_GAPPS_VERSION, DEFAULT_GAPPS_VERSION);
     }
 
     public String getInternalStorage() {
@@ -139,10 +158,6 @@ public class SettingsHelper {
 
     public static long getCheckTimeGapps() {
         return Long.parseLong(settings.getString(PROPERTY_CHECK_TIME_GAPPS, DEFAULT_CHECK_TIME));
-    }
-
-    public static String getGappsVersion() {
-        return settings.getString(PROPERTY_GAPPS_VERSION, DEFAULT_GAPPS_VERSION);
     }
 
     public void setDownloadRomId(Long id, String md5) {

@@ -32,7 +32,6 @@ import com.rootbox.rootboxota.http.URLStringReader;
 public class RomUpdater extends Updater {
     private Context mContext;
 
-    private static final String URL = "http://api.rootbox.ca/updates/?d=%s&v=%s";
     private static SettingsHelper sSettingsHelper;
 
     private boolean mScanning = false;
@@ -48,7 +47,10 @@ public class RomUpdater extends Updater {
     public void check() {
         mScanning = true;
         fireStartChecking();
-        new URLStringReader(this).execute(String.format(URL, new Object[] {
+        if (sSettingsHelper == null) {
+            sSettingsHelper = new SettingsHelper(mContext);
+        }
+        new URLStringReader(this).execute(String.format(sSettingsHelper.getRomVersion(), new Object[] {
                 getDevice(),
                 getVersion() }));
     }

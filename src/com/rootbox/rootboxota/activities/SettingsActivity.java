@@ -46,9 +46,10 @@ public class SettingsActivity extends PreferenceActivity implements
     private SettingsHelper mSettingsHelper;
     private RecoveryHelper mRecoveryHelper;
     private CheckBoxPreference mExpertMode;
+    private ListPreference mGappsVersion;
+    private CheckBoxPreference mStableOnly;
     private ListPreference mCheckTimeRom;
     private ListPreference mCheckTimeGapps;
-    private ListPreference mGappsVersion;
     private Preference mDownloadPath;
     private CheckBoxPreference mDownloadFinished;
     private PreferenceCategory mRecoveryCategory;
@@ -71,9 +72,10 @@ public class SettingsActivity extends PreferenceActivity implements
         addPreferencesFromResource(R.layout.activity_settings);
 
         mExpertMode = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_EXPERT);
+        mStableOnly = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_STABLE_ONLY);
+        mGappsVersion = (ListPreference) findPreference(SettingsHelper.PROPERTY_GAPPS_VERSION);
         mCheckTimeRom = (ListPreference) findPreference(SettingsHelper.PROPERTY_CHECK_TIME_ROM);
         mCheckTimeGapps = (ListPreference) findPreference(SettingsHelper.PROPERTY_CHECK_TIME_GAPPS);
-        mGappsVersion = (ListPreference) findPreference(SettingsHelper.PROPERTY_GAPPS_VERSION);
         mDownloadPath = findPreference(SettingsHelper.PROPERTY_DOWNLOAD_PATH);
         mDownloadFinished = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_DOWNLOAD_FINISHED);
         mRecovery = findPreference(SettingsHelper.PROPERTY_RECOVERY);
@@ -87,9 +89,10 @@ public class SettingsActivity extends PreferenceActivity implements
         }
 
         mExpertMode.setDefaultValue(mSettingsHelper.getExpertMode());
+        mGappsVersion.setValue(String.valueOf(mSettingsHelper.getGappsVersion()));
+        mStableOnly.setChecked(mSettingsHelper.getStableOnly());
         mCheckTimeRom.setValue(String.valueOf(mSettingsHelper.getCheckTimeRom()));
         mCheckTimeGapps.setValue(String.valueOf(mSettingsHelper.getCheckTimeGapps()));
-        mGappsVersion.setValue(String.valueOf(mSettingsHelper.getGappsVersion()));
         mDownloadFinished.setChecked(mSettingsHelper.getDownloadFinished());
         mOptions.setDefaultValue(mSettingsHelper.getShowOptions());
 
@@ -149,7 +152,7 @@ public class SettingsActivity extends PreferenceActivity implements
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (SettingsHelper.PROPERTY_EXPERT.equals(key)) {
             addOrRemovePreferences();
-        } else if (SettingsHelper.PROPERTY_CHECK_TIME_ROM.equals(key)) {
+        } else if (SettingsHelper.PROPERTY_CHECK_TIME_ROM.equals(key) || SettingsHelper.PROPERTY_STABLE_ONLY.equals(key)) {
             Utils.setAlarm(this, mSettingsHelper.getCheckTimeRom(), false, true);
         } else if (SettingsHelper.PROPERTY_CHECK_TIME_GAPPS.equals(key) || SettingsHelper.PROPERTY_GAPPS_VERSION.equals(key)) {
             Utils.setAlarm(this, mSettingsHelper.getCheckTimeGapps(), false, false);

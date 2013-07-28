@@ -28,6 +28,19 @@
         android:key="settings_update"
         android:title="@string/settings_update" >
 
+        <CheckBoxPreference
+                android:key="stableonly"
+                android:title="@string/settings_stable_only_title"
+                android:summary="@string/settings_stable_only_summary" />
+
+        <ListPreference
+                android:key="gappsversion"
+                android:title="@string/settings_gapps_version_title"
+                android:summary="@string/settings_gapps_version_summary"
+                android:dialogTitle="@string/settings_gapps_version_title"
+                android:entries="@array/gaaps_version_entries"
+                android:entryValues="@array/gapps_version_values" />
+
         <ListPreference
             android:key="checktimerom"
             android:title="@string/settings_checktimerom_title"
@@ -43,14 +56,6 @@
             android:dialogTitle="@string/settings_checktimegapps_title"
             android:entries="@array/time_notifications_entries"
             android:entryValues="@array/time_notifications_values" />
-
-        <ListPreference
-                android:key="gappsversion"
-                android:title="@string/settings_gapps_version_title"
-                android:summary="@string/settings_gapps_version_summary"
-                android:dialogTitle="@string/settings_gapps_version_title"
-                android:entries="@array/gaaps_version_entries"
-                android:entryValues="@array/gapps_version_values" />
 
         <Preference
             android:key="downloadpath"

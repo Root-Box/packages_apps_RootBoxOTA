@@ -84,6 +84,12 @@
     <string name="settings_expertmode_title">Expert mode</string>
     <string name="settings_expertmode_summary">Show all options</string>
     <string name="settings_update">Updates</string>
+    <string name="settings_stable_only_title">Get only stable updates</string>
+    <string name="settings_stable_only_summary">Untick this option if you want to get nightly ROM updates also, otherwise - you will get only stable ROM updates</string>
+    <string name="settings_gapps_version_title">Google apps version source</string>
+    <string name="settings_gapps_version_summary">Select your preferred Google apps version source to be checked</string>
+    <string name="settings_gapps_version_rootbox_official">RootBox (official)</string>
+    <string name="settings_gapps_version_paranoid_android">Paranoid Android</string>
     <string name="settings_checktimerom_title">ROM update check frequency</string>
     <string name="settings_checktimerom_summary">Specify the time between each ROM update check</string>
     <string name="settings_checktimegapps_title">Google apps update check frequency</string>
@@ -100,10 +106,6 @@
     <string name="settings_download_path_alert_error">Please specify the path to save the downloads</string>
     <string name="settings_download_finished_title">Open app on download finished</string>
     <string name="settings_download_finished_summary">Untick this option if you want to manually enter the app after a download is completed</string>
-    <string name="settings_gapps_version_title">Google apps version source</string>
-    <string name="settings_gapps_version_summary">Select your preferred Google apps version source to be checked</string>
-    <string name="settings_gapps_version_rootbox_official">RootBox (official)</string>
-    <string name="settings_gapps_version_paranoid_android">Paranoid Android</string>
     <string name="settings_recovery">Recovery</string>
     <string name="settings_selectrecovery_title">Select recovery</string>
     <string name="settings_selectrecovery_summary">Select the recovery installed in your device</string>
