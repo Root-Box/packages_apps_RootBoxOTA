@@ -51,7 +51,7 @@
     <string-array name="gapps_version_values" translatable="false">
         <item>http://api.rootbox.ca/updates/gapps/?v=%s</item>
         <item>http://api.paranoidandroid.co/updates/gapps/?v=%s</item>
-        <item>http://api.paranoidandroid.co/updates/gapps/?v=%s&amp;o=1</item>
+        <item>http://api.rootbox.ca/updates/gapps/?v=%s&amp;o=1</item>
     </string-array>
 
     <!-- OPTIONS BEFORE FLASHING -->
