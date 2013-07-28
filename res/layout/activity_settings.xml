@@ -48,7 +48,7 @@
                 android:key="gappsversion"
                 android:title="@string/settings_gapps_version_title"
                 android:summary="@string/settings_gapps_version_summary"
-                android:dialogTitle="@string/settings_gapps_version_summary"
+                android:dialogTitle="@string/settings_gapps_version_title"
                 android:entries="@array/gaaps_version_entries"
                 android:entryValues="@array/gapps_version_values" />
 

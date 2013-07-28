@@ -74,10 +74,10 @@
     <string name="recovery_cwm">ClockworkMod (CWM)</string>
     <string name="recovery_twrp">TeamWin (TWRP)</string>
     <string name="recovery_select_alert_title">Select recovery</string>
-    <string name="recovery_select_alert_summary">Specify the recovery you are using. You can change this option later in the app settings.</string>
+    <string name="recovery_select_alert_summary">Specify the recovery you are using:</string>
     <string name="recovery_select_sdcard_alert_title">Storage path</string>
-    <string name="recovery_select_sdcard_alert_summary">Specify the storage name</string>
-    <string name="recovery_select_sdcard_alert_error">Please specify the storage name</string>
+    <string name="recovery_select_sdcard_alert_summary">Specify the storage name:</string>
+    <string name="recovery_select_sdcard_alert_error">Please specify the storage name!</string>
     <string name="recovery_changed">Recovery %1$s configured.</string>
 
     <!-- SETTINGS -->
@@ -100,8 +100,8 @@
     <string name="settings_download_path_alert_error">Please specify the path to save the downloads</string>
     <string name="settings_download_finished_title">Open app on download finished</string>
     <string name="settings_download_finished_summary">Untick this option if you want to manually enter the app after a download is completed</string>
-    <string name="settings_gapps_version_title">Google apps version</string>
-    <string name="settings_gapps_version_summary">Select your preferred Google apps version to be checked</string>
+    <string name="settings_gapps_version_title">Google apps version source</string>
+    <string name="settings_gapps_version_summary">Select your preferred Google apps version source to be checked</string>
     <string name="settings_gapps_version_rootbox_official">RootBox (official)</string>
     <string name="settings_gapps_version_paranoid_android">Paranoid Android</string>
     <string name="settings_recovery">Recovery</string>
@@ -111,7 +111,7 @@
     <string name="settings_internalsdcard_summary">Specify the internal storage path used by the recovery</string>
     <string name="settings_externalsdcard_title">External storage path</string>
     <string name="settings_externalsdcard_summary">Specify the external storage path used by the recovery</string>
-    <string name="settings_showoptions_title">Options</string>
+    <string name="settings_showoptions_title">Flash options</string>
     <string name="settings_showoptions_summary">Chose flash options to show</string>
     <string name="install_option_backup">Backup</string>
     <string name="install_option_wipe_system">Wipe System</string>
