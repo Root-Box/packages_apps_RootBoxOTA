@@ -109,7 +109,7 @@ public class InstallFragment extends android.preference.PreferenceFragment
             Preference pref = new Preference(mContext);
             pref.setTitle(file.getName());
             pref.setSummary(getSummary(file, true));
-            pref.setIcon(R.drawable.ic_download);
+            pref.setIcon(R.drawable.ic_offline);
             pref.getExtras().putString("filePath", file.getAbsolutePath());
             pref.setOnPreferenceClickListener(mListener);
             if (IOUtils.isRom(file.getName()) || IOUtils.isGapps(file.getName())) {

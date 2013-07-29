@@ -22,7 +22,7 @@
     <CheckBoxPreference
         android:key="expertmode"
         android:title="@string/settings_expertmode_title"
-        android:summary="@string/settings_expertmode_summary" />
+        android:summary="@string/settings_expertmode_summary_off" />
 
     <PreferenceCategory
         android:key="settings_update"
@@ -31,7 +31,7 @@
         <CheckBoxPreference
                 android:key="stableonly"
                 android:title="@string/settings_stable_only_title"
-                android:summary="@string/settings_stable_only_summary" />
+                android:summary="@string/settings_stable_only_summary_on" />
 
         <ListPreference
                 android:key="gappssource"
@@ -64,7 +64,7 @@
         <CheckBoxPreference
             android:key="downloadfinished"
             android:title="@string/settings_download_finished_title"
-            android:summary="@string/settings_download_finished_summary" />
+            android:summary="@string/settings_download_finished_summary_on" />
 
     </PreferenceCategory>
 

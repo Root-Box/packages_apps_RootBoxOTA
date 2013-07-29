@@ -164,12 +164,21 @@ public class SettingsActivity extends PreferenceActivity implements
     private void updateSummaries() {
         mDownloadPath.setSummary(mSettingsHelper.getDownloadPath());
         RecoveryInfo info = mRecoveryHelper.getRecovery();
+        boolean expert = mSettingsHelper.getExpertMode();
+        boolean stableonly = mSettingsHelper.getStableOnly();
+        boolean downloadfinished = mSettingsHelper.getDownloadFinished();
         mRecovery.setSummary(getResources().getText(R.string.settings_selectrecovery_summary)
-                + " (" + info.getName() + ")");
+                + "\n- Currently set: " + info.getName());
         mInternalSdcard.setSummary(getResources().getText(R.string.settings_internalsdcard_summary)
-                + " (" + mSettingsHelper.getInternalStorage() + ")");
+                + "\n- Currently set: " + mSettingsHelper.getInternalStorage());
         mExternalSdcard.setSummary(getResources().getText(R.string.settings_externalsdcard_summary)
-                + " (" + mSettingsHelper.getExternalStorage() + ")");
+                + "\n- Currently set: " + mSettingsHelper.getExternalStorage());
+        mExpertMode.setSummary(expert ? getResources().getText(R.string.settings_expertmode_summary_on)
+                : getResources().getText(R.string.settings_expertmode_summary_off));
+        mStableOnly.setSummary(stableonly ? getResources().getText(R.string.settings_stable_only_summary_on)
+                : getResources().getText(R.string.settings_stable_only_summary_off));
+        mDownloadFinished.setSummary(downloadfinished ? getResources().getText(R.string.settings_download_finished_summary_on)
+                : getResources().getText(R.string.settings_download_finished_summary_off));
     }
 
     @SuppressWarnings("deprecation")
