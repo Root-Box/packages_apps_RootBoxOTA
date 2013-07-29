@@ -112,7 +112,7 @@ public class InstallFragment extends android.preference.PreferenceFragment
             pref.setIcon(R.drawable.ic_download);
             pref.getExtras().putString("filePath", file.getAbsolutePath());
             pref.setOnPreferenceClickListener(mListener);
-            if (IOUtils.isOnDownloadList(mContext, file.getName())) {
+            if (IOUtils.isRom(file.getName()) || IOUtils.isGapps(file.getName())) {
                 mLocalRoot.addPreference(pref);
             } else {
                 mExtrasRoot.addPreference(pref);
