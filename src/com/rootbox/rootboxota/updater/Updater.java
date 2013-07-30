@@ -45,8 +45,7 @@ public abstract class Updater implements URLStringReaderListener, HttpStringRead
     public static final String PROPERTY_DEVICE = "ro.product.device";
     public static final String PROPERTY_DEVICE_ROOTBOX = "ro.rootbox.device";
 
-    public static final String PROPERTY_VERSION_ROOTBOX = "ro.rootbox.build";
-    public static final String PROPERTY_VERSION_ROOTBOX_OLD = "ro.goo.version";
+    public static final String PROPERTY_VERSION_ROOTBOX = "ro.rootbox.version";
 
     public static final int ROM_NOTIFICATION_ID = 122303222;
     public static final int GAPPS_NOTIFICATION_ID = 122303224;
