@@ -437,7 +437,6 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
 
     public void addFile(File file) {
         InstallFragment.addFile(file);
-        InstallFragment.update();
         selectItem(INSTALL);
     }
 

@@ -48,7 +48,15 @@ public class InstallFragment extends android.preference.PreferenceFragment
         if (sFiles.indexOf(file) >= 0) {
             sFiles.remove(file);
         }
-        sFiles.add(file);
+        if (IOUtils.isRom(file.getName()) && sFiles.size() > 0) {
+            sFiles.add(0, file);
+        }
+        else if (IOUtils.isGapps(file.getName()) && sFiles.size() > 1) {
+            sFiles.add(1, file);
+        }
+        else {
+            sFiles.add(file);
+        }
     }
 
     public static String[] getFiles() {

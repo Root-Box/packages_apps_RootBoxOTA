@@ -32,7 +32,7 @@ import com.rootbox.rootboxota.http.URLStringReader;
 public class RomUpdater extends Updater {
     private Context mContext;
 
-    private static SettingsHelper sSettingsHelper;
+    private static SettingsHelper mSettingsHelper;
 
     private boolean mScanning = false;
     private boolean mFromAlarm;
@@ -45,12 +45,17 @@ public class RomUpdater extends Updater {
 
     @Override
     public void check() {
+        if (mFromAlarm) {
+            if (mSettingsHelper == null) {
+                mSettingsHelper = new SettingsHelper(getContext());
+            }
+            if (mSettingsHelper.getCheckTimeRom() < 0) {
+                return;
+            }
+        }
         mScanning = true;
         fireStartChecking();
-        if (sSettingsHelper == null) {
-            sSettingsHelper = new SettingsHelper(mContext);
-        }
-        new URLStringReader(this).execute(String.format(sSettingsHelper.getRomVersion(), new Object[] {
+        new URLStringReader(this).execute(String.format(mSettingsHelper.getRomVersion(), new Object[] {
                 getDevice(),
                 getVersion() }));
     }
@@ -87,9 +92,6 @@ public class RomUpdater extends Updater {
 
     @Override
     public void onReadEnd(String buffer) {
-        if (sSettingsHelper == null) {
-            sSettingsHelper = new SettingsHelper(mContext);
-        }
         try {
             mScanning = false;
             PackageInfo[] lastRoms = null;
@@ -111,7 +113,7 @@ public class RomUpdater extends Updater {
             }
             lastRoms = list.toArray(new PackageInfo[list.size()]);
             if (list.size() > 0) {
-                if (mFromAlarm && sSettingsHelper.getCheckTimeRom() > 0) {
+                if (mFromAlarm) {
                     Utils.showNotification(getContext(), lastRoms, ROM_NOTIFICATION_ID,
                             R.string.new_rom_found_title);
                 }
