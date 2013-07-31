@@ -119,7 +119,7 @@ public class DirectoryChooserDialog {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (mCurrentDir.equals(mSdcardDirectory)) {
+                    if (mCurrentDir.equals("/")) {
                         return false;
                     } else {
                         mCurrentDir = new File(mCurrentDir).getParent();
@@ -146,7 +146,7 @@ public class DirectoryChooserDialog {
             }
 
             for (File file : dirFile.listFiles()) {
-                if (file.isDirectory()) {
+                if (file.isDirectory() && !file.getName().startsWith(".")) {
                     dirs.add(file.getName());
                 }
             }

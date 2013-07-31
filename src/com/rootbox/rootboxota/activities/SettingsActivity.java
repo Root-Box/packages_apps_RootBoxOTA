@@ -31,6 +31,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.rootbox.rootboxota.DirectoryChooserDialog;
 import com.rootbox.rootboxota.IOUtils;
@@ -124,6 +125,7 @@ public class SettingsActivity extends PreferenceActivity implements
         String key = preference.getKey();
 
         if (SettingsHelper.PROPERTY_DOWNLOAD_PATH.equals(key)) {
+            Toast.makeText(this, R.string.settings_download_path_toast, Toast.LENGTH_LONG).show();
             selectDownloadPath();
         } else if (SettingsHelper.PROPERTY_RECOVERY.equals(key)) {
             mRecoveryHelper.selectRecovery();

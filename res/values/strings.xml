@@ -110,6 +110,7 @@
     <string name="settings_download_path_alert_title">Downloads path</string>
     <string name="settings_download_path_alert_summary">Specify the path to save the downloads!</string>
     <string name="settings_download_path_alert_error">Please specify the path to save the downloads!</string>
+    <string name="settings_download_path_toast">Use BACK button to navigate to parent directory</string>
     <string name="settings_download_finished_title">Open app on download finished</string>
     <string name="settings_download_finished_summary_on">Untick this option if you want to manually enter the app after a download is completed.</string>
     <string name="settings_download_finished_summary_off">Tick this option if you want that the app would open automatically after a download is completed.</string>
