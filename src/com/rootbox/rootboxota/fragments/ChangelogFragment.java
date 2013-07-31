@@ -32,7 +32,7 @@ import com.rootbox.rootboxota.R;
 public class ChangelogFragment extends Fragment {
 
     private static final String CHANGELOG_URL
-            = "https://plus.google.com/app/basic/115833651542488654391/posts";
+            = "http://api.rootbox.ca/changelog";
     private ProgressBar mProgressBar;
 
     @Override
