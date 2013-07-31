@@ -152,8 +152,8 @@ public class GappsUpdater extends Updater {
     }
 
     @Override
-    public long getVersion() {
-        return mVersion;
+    public String getVersion() {
+        return String.valueOf(mVersion);
     }
 
     @Override
