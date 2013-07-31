@@ -474,8 +474,6 @@ public class MainActivity extends Activity implements DownloadCallback, Notifica
                 break;
             case CHANGELOG:
                 if (mChangelogFragment == null) {
-                    mProgressBar.setIndeterminate(true);
-                    mProgressBar.setVisibility(View.VISIBLE);
                     mChangelogFragment = new ChangelogFragment();
                 }
                 fragment = mChangelogFragment;

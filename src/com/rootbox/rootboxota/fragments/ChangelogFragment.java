@@ -19,9 +19,12 @@ package com.rootbox.rootboxota.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
@@ -30,8 +33,46 @@ import android.widget.Toast;
 import com.rootbox.rootboxota.R;
 
 public class ChangelogFragment extends Fragment {
+    private static final String CHANGELOG_URL = "http://api.rootbox.ca/changelog/";
+    WebView webview;
+    ProgressBar pd = null;
 
-    private static final String CHANGELOG_URL = "http://api.rootbox.ca/changelog";
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_changelog, container, false);
+
+        pd = (ProgressBar) rootView.findViewById(R.id.web_view_progress_bar);
+
+        webview = (WebView) rootView.findViewById(R.id.changelog);
+        webview.getSettings().setJavaScriptEnabled(true);
+
+        webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int progress) {
+                super.onProgressChanged(view, progress);
+                pd.setProgress(progress);
+                if(progress == 100) {
+                    pd.setVisibility(View.GONE);
+                }
+                else {
+                    pd.setVisibility(View.VISIBLE);
+                    pd.setIndeterminate(false);
+
+                }
+            }
+        });
+
+        if (savedInstanceState == null) {
+            webview.loadUrl(CHANGELOG_URL);
+        }
+        return rootView;
+    }
+}
+
+/*public class ChangelogFragment extends Fragment {
+
+    private static final String CHANGELOG_URL = "http://api.rootbox.ca/changelog/";
     private ProgressBar mProgressBar;
 
     @Override
@@ -44,25 +85,17 @@ public class ChangelogFragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                mProgressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar_loop);
-                mProgressBar.setIndeterminate(true);
                 mProgressBar.setVisibility(View.VISIBLE);
                 view.loadUrl(url);
                 return true;
             }
 
             public void onPageFinished(WebView view, String url) {
-                Activity act = getActivity();
-                if (act == null) {
-                    return;
-                }
-                mProgressBar = (ProgressBar) act.findViewById(R.id.progress_bar_loop);
                 mProgressBar.setVisibility(View.GONE);
             }
 
             public void onReceivedError(WebView view, int errorCode, String description,
                                         String failingUrl) {
-                mProgressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar_loop);
                 mProgressBar.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), R.string.changelog_error, Toast.LENGTH_SHORT).show();
             }
@@ -73,4 +106,4 @@ public class ChangelogFragment extends Fragment {
         return rootView;
     }
 
-}
+}*/
