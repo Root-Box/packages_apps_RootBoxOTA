@@ -45,10 +45,10 @@ public class RomUpdater extends Updater {
 
     @Override
     public void check() {
+        if (mSettingsHelper == null) {
+            mSettingsHelper = new SettingsHelper(getContext());
+        }
         if (mFromAlarm) {
-            if (mSettingsHelper == null) {
-                mSettingsHelper = new SettingsHelper(getContext());
-            }
             if (mSettingsHelper.getCheckTimeRom() < 0) {
                 return;
             }

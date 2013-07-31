@@ -163,10 +163,10 @@ public class GappsUpdater extends Updater {
 
     @Override
     public void check() {
+        if (mSettingsHelper == null) {
+            mSettingsHelper = new SettingsHelper(getContext());
+        }
         if (mFromAlarm) {
-            if (mSettingsHelper == null) {
-                mSettingsHelper = new SettingsHelper(getContext());
-            }
             if (mSettingsHelper.getCheckTimeGapps() < 0) {
                 return;
             }
