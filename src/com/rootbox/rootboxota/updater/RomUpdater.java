@@ -62,7 +62,7 @@ public class RomUpdater extends Updater {
 
     @Override
     public long getVersion() {
-        String version = Utils.getProp(PROPERTY_VERSION_ROOTBOX);
+        String version = Utils.getProp(PROPERTY_VERSION_ROOTBOX_BUILD);
         String stripped = version.replaceAll("\\D+", "");
         return Long.parseLong(stripped);
     }
