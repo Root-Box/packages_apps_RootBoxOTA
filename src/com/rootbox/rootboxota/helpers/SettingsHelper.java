@@ -59,8 +59,8 @@ public class SettingsHelper {
 
     private static final boolean DEFAULT_EXPERT = false;
     private static final boolean DEFAULT_STABLE_ONLY = true;
-    public static final String DEFAULT_STABLE_ONLY_URL_TRUE = "http://api.rootbox.ca/updates/?d=%s&v=%s&s=1";
-    public static final String DEFAULT_STABLE_ONLY_URL_FALSE = "http://api.rootbox.ca/updates/?d=%s&v=%s";
+    public static final String DEFAULT_STABLE_ONLY_URL_TRUE = "http://api.rootbox.ca/updates/?d=%s&v=%s&b=%s&s=1";
+    public static final String DEFAULT_STABLE_ONLY_URL_FALSE = "http://api.rootbox.ca/updates/?d=%s&v=%s&b=%s";
     private static final String DEFAULT_GAPPS_SOURCE = "http://api.rootbox.ca/updates/gapps/?v=%s";
     private static final String DEFAULT_CHECK_TIME = "18000000"; // five hours
     private static final String DEFAULT_DOWNLOAD_PATH = new File(Environment

@@ -57,13 +57,17 @@ public class RomUpdater extends Updater {
         fireStartChecking();
         new URLStringReader(this).execute(String.format(mSettingsHelper.getRomVersion(), new Object[] {
                 getDevice(),
-                getVersion() }));
+                getVersion(),
+                getBuild() }));
     }
 
     @Override
     public String getVersion() {
-        String version = Utils.getProp(PROPERTY_VERSION_ROOTBOX_VERSION);
-        return version;
+        return Utils.getProp(PROPERTY_VERSION_ROOTBOX_VERSION);
+    }
+
+    public String getBuild() {
+        return Utils.getProp(PROPERTY_VERSION_ROOTBOX_BUILD);
     }
 
     @Override
