@@ -95,6 +95,7 @@ public class DirectoryChooserDialog {
             public void onClick(DialogInterface dialog, int item) {
                 mCurrentDir += "/"
                         + ((AlertDialog) dialog).getListView().getAdapter().getItem(item);
+                mCurrentDir = mCurrentDir.replace("//", "/");
                 updateDirectory();
             }
         }
@@ -173,7 +174,7 @@ public class DirectoryChooserDialog {
         mTitleView = new TextView(mContext);
         mTitleView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT));
-        mTitleView.setTextAppearance(mContext, android.R.style.TextAppearance_Large);
+        mTitleView.setTextAppearance(mContext, android.R.style.TextAppearance_Small);
         mTitleView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         mTitleView.setText(title);
 
