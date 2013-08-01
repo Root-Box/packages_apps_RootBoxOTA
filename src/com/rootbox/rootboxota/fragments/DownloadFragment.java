@@ -188,6 +188,9 @@ public class DownloadFragment extends android.preference.PreferenceFragment impl
         if (isRom) {
             return Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION));
         } else {
+            if (Integer.parseInt(mGappsUpdater.getVersion()) == -1) {
+                return mContext.getResources().getString(R.string.no_gapps_installed);
+            }
             return Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion());
         }
     }

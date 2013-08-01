@@ -94,10 +94,14 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
                     new Object[] {
                             Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION))
                     }));
-            mGappsView.setText(resources.getString(R.string.gapps_version,
+            if (Integer.parseInt(mGappsUpdater.getVersion()) == -1) {
+                mGappsView.setText(resources.getString(R.string.no_gapps_installed));
+            } else {
+                mGappsView.setText(resources.getString(R.string.gapps_version,
                     new Object[] {
-                            Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion())
+                        Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion())
                     }));
+            }
         } else {
             PackageInfo rom = roms != null && roms.length > 0 ? roms[0] : null;
             PackageInfo gapp = gapps != null && gapps.length > 0 ? gapps[0] : null;
@@ -122,10 +126,14 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
                         Utils.getReadableVersion(gapp.getFilename())
                     }));
             } else {
-                mGappsView.setText(resources.getString(R.string.gapps_version,
-                    new Object[] {
-                        Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion())
-                    }));
+                if (Integer.parseInt(mGappsUpdater.getVersion()) == -1) {
+                    mGappsView.setText(resources.getString(R.string.no_gapps_installed));
+                } else {
+                    mGappsView.setText(resources.getString(R.string.gapps_version,
+                        new Object[] {
+                            Utils.getReadableVersion("gapps-" + mGappsUpdater.getPlatform() + "-" + mGappsUpdater.getVersion())
+                        }));
+                }
             }
         }
     }
