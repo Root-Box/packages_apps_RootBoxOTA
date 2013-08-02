@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.telephony.TelephonyManager;
 
 import com.rootbox.rootboxota.R;
 import com.rootbox.rootboxota.Utils;
@@ -58,7 +59,8 @@ public class RomUpdater extends Updater {
         new URLStringReader(this).execute(String.format(mSettingsHelper.getRomVersion(), new Object[] {
                 getDevice(),
                 getVersion(),
-                getBuild() }));
+                getBuild(),
+                getDeviceId() }));
     }
 
     @Override
@@ -68,6 +70,11 @@ public class RomUpdater extends Updater {
 
     public String getBuild() {
         return Utils.getProp(PROPERTY_VERSION_ROOTBOX_BUILD);
+    }
+
+    public String getDeviceId() {
+        TelephonyManager TelephonyMgr = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        return String.valueOf(TelephonyMgr.getDeviceId());
     }
 
     @Override
