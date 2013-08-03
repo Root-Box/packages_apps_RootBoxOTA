@@ -169,7 +169,7 @@ public class InstallOptionsCursor extends AbstractCursor {
         return false;
     }
 
-    private int getText(String option) {
+    public static int getText(String option) {
         if (SettingsHelper.INSTALL_BACKUP.equals(option)) {
             return R.string.backup;
         } else if (SettingsHelper.INSTALL_WIPESYSTEM.equals(option)) {

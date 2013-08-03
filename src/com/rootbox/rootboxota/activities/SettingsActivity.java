@@ -35,11 +35,14 @@ import android.widget.Toast;
 
 import com.rootbox.rootboxota.DirectoryChooserDialog;
 import com.rootbox.rootboxota.IOUtils;
+import com.rootbox.rootboxota.InstallOptionsCursor;
 import com.rootbox.rootboxota.R;
 import com.rootbox.rootboxota.Utils;
 import com.rootbox.rootboxota.helpers.RecoveryHelper;
 import com.rootbox.rootboxota.helpers.RecoveryHelper.RecoveryInfo;
 import com.rootbox.rootboxota.helpers.SettingsHelper;
+
+import java.util.Arrays;
 
 public class SettingsActivity extends PreferenceActivity implements
         OnSharedPreferenceChangeListener {
@@ -164,23 +167,61 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void updateSummaries() {
-        mDownloadPath.setSummary(mSettingsHelper.getDownloadPath());
-        RecoveryInfo info = mRecoveryHelper.getRecovery();
         boolean expert = mSettingsHelper.getExpertMode();
         boolean stableonly = mSettingsHelper.getStableOnly();
+        String[] sourceentries = getResources().getStringArray(R.array.gaaps_version_entries);
+        String[] sourcevalues = getResources().getStringArray(R.array.gapps_version_values);
+        String[] checkentries = getResources().getStringArray(R.array.time_notifications_entries);
+        String[] checkvalues = getResources().getStringArray(R.array.time_notifications_values);
+        String sourcesummary = sourceentries[Arrays.asList(sourcevalues).indexOf(String
+                .valueOf(mSettingsHelper.getGappsSource()))];
+        String romchecksummary = checkentries[Arrays.asList(checkvalues).indexOf(String
+                .valueOf(mSettingsHelper.getCheckTimeRom()))];
+        String gappschecksummary = checkentries[Arrays.asList(checkvalues).indexOf(String
+                .valueOf(mSettingsHelper.getCheckTimeGapps()))];
         boolean downloadfinished = mSettingsHelper.getDownloadFinished();
+        RecoveryInfo info = mRecoveryHelper.getRecovery();
+        String shownoptionsstring = "";
+        int count = 0;
+        for (int i = 0; i < mSettingsHelper.INSTALL_OPTIONS.length; i++) {
+            if (mSettingsHelper.isShowOption(mSettingsHelper.INSTALL_OPTIONS[i])) {
+                shownoptionsstring += (count > 0 ? ", " : "") + getResources().getString(
+                        InstallOptionsCursor.getText(mSettingsHelper.INSTALL_OPTIONS[i]));
+                count++;
+            }
+        }
+        if("".equals(shownoptionsstring)) {
+            shownoptionsstring = "None";
+        }
+
+        mDownloadPath.setSummary(mSettingsHelper.getDownloadPath());
+        String recoverysummary = info.getName() == "cwmbased" ? String.valueOf(getResources()
+                .getText(R.string.recovery_cwm)) : info.getName() == "twrp" ? String.valueOf(getResources()
+                .getText(R.string.recovery_twrp)) : "Unknown";
+        mExpertMode.setSummary(expert ? getResources().getText(R.string
+                .settings_expertmode_summary_on) : getResources().getText(R.string
+                .settings_expertmode_summary_off));
+        mStableOnly.setSummary(stableonly ? getResources().getText(R.string
+                .settings_stable_only_summary_on) : getResources().getText(R.string
+                .settings_stable_only_summary_off));
+        mGappsSource.setSummary(getResources().getText(R.string.settings_gapps_version_summary)
+                + "\n- " + sourcesummary + ".");
+        mCheckTimeRom.setSummary(getResources().getText(R.string.settings_checktimerom_summary)
+                + "\n- " + romchecksummary + ".");
+        mCheckTimeGapps.setSummary(getResources().getText(R.string.settings_checktimegapps_summary)
+                + "\n- " + gappschecksummary + ".");
+        mDownloadFinished.setSummary(downloadfinished ? getResources().getText(R.string
+                .settings_download_finished_summary_on) : getResources().getText(R.string
+                .settings_download_finished_summary_off));
         mRecovery.setSummary(getResources().getText(R.string.settings_selectrecovery_summary)
-                + "\n- Currently set: " + info.getName());
+                + "\n- " + recoverysummary + ".");
         mInternalSdcard.setSummary(getResources().getText(R.string.settings_internalsdcard_summary)
-                + "\n- Currently set: " + mSettingsHelper.getInternalStorage());
+                + "\n- " + mSettingsHelper.getInternalStorage() + ".");
         mExternalSdcard.setSummary(getResources().getText(R.string.settings_externalsdcard_summary)
-                + "\n- Currently set: " + mSettingsHelper.getExternalStorage());
-        mExpertMode.setSummary(expert ? getResources().getText(R.string.settings_expertmode_summary_on)
-                : getResources().getText(R.string.settings_expertmode_summary_off));
-        mStableOnly.setSummary(stableonly ? getResources().getText(R.string.settings_stable_only_summary_on)
-                : getResources().getText(R.string.settings_stable_only_summary_off));
-        mDownloadFinished.setSummary(downloadfinished ? getResources().getText(R.string.settings_download_finished_summary_on)
-                : getResources().getText(R.string.settings_download_finished_summary_off));
+                + "\n- " + mSettingsHelper.getExternalStorage() + ".");
+        mOptions.setSummary(getResources().getText(R.string.settings_showoptions_summary)
+                + "\n- " + shownoptionsstring + ".");
+
     }
 
     @SuppressWarnings("deprecation")
