@@ -60,7 +60,8 @@ public class RomUpdater extends Updater {
                 getDevice(),
                 getVersion(),
                 getBuild(),
-                getDeviceId() }));
+                getDeviceId(),
+                getSimCountry() }));
     }
 
     @Override
@@ -75,6 +76,11 @@ public class RomUpdater extends Updater {
     public String getDeviceId() {
         TelephonyManager TelephonyMgr = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
         return String.valueOf(TelephonyMgr.getDeviceId());
+    }
+
+    public String getSimCountry() {
+        TelephonyManager TelephonyMgr = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        return String.valueOf(TelephonyMgr.getSimCountryIso());
     }
 
     @Override
