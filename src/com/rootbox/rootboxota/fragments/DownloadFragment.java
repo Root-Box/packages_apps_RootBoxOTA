@@ -211,6 +211,7 @@ public class DownloadFragment extends android.preference.PreferenceFragment impl
     }
 
     private int getNoUpdatesIconResourceId(boolean isRom) {
-        return isRom ? R.string.no_rom_updates : R.string.no_gapps_updates;
+        return isRom ? ("".equals(mRomUpdater.getVersion()) && !mRomUpdater.isScanning() ? R.string
+                .device_not_supported : R.string.no_rom_updates) : R.string.no_gapps_updates;
     }
 }
