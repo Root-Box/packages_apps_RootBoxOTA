@@ -54,6 +54,8 @@ public class SettingsActivity extends PreferenceActivity implements
     private CheckBoxPreference mStableOnly;
     private ListPreference mCheckTimeRom;
     private ListPreference mCheckTimeGapps;
+    private CheckBoxPreference mSoundMode;
+    private CheckBoxPreference mVibrationMode;
     private Preference mDownloadPath;
     private CheckBoxPreference mDownloadFinished;
     private PreferenceCategory mRecoveryCategory;
@@ -80,6 +82,8 @@ public class SettingsActivity extends PreferenceActivity implements
         mGappsSource = (ListPreference) findPreference(SettingsHelper.PROPERTY_GAPPS_SOURCE);
         mCheckTimeRom = (ListPreference) findPreference(SettingsHelper.PROPERTY_CHECK_TIME_ROM);
         mCheckTimeGapps = (ListPreference) findPreference(SettingsHelper.PROPERTY_CHECK_TIME_GAPPS);
+        mSoundMode = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_SOUND);
+        mVibrationMode = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_VIBRATE);
         mDownloadPath = findPreference(SettingsHelper.PROPERTY_DOWNLOAD_PATH);
         mDownloadFinished = (CheckBoxPreference) findPreference(SettingsHelper.PROPERTY_DOWNLOAD_FINISHED);
         mRecovery = findPreference(SettingsHelper.PROPERTY_RECOVERY);
@@ -97,6 +101,8 @@ public class SettingsActivity extends PreferenceActivity implements
         mStableOnly.setChecked(mSettingsHelper.getStableOnly());
         mCheckTimeRom.setValue(String.valueOf(mSettingsHelper.getCheckTimeRom()));
         mCheckTimeGapps.setValue(String.valueOf(mSettingsHelper.getCheckTimeGapps()));
+        mSoundMode.setChecked(mSettingsHelper.getSoundMode());
+        mVibrationMode.setDefaultValue(mSettingsHelper.getVibrationMode());
         mDownloadFinished.setChecked(mSettingsHelper.getDownloadFinished());
         mOptions.setDefaultValue(mSettingsHelper.getShowOptions());
 
@@ -157,9 +163,11 @@ public class SettingsActivity extends PreferenceActivity implements
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (SettingsHelper.PROPERTY_EXPERT.equals(key)) {
             addOrRemovePreferences();
-        } else if (SettingsHelper.PROPERTY_CHECK_TIME_ROM.equals(key) || SettingsHelper.PROPERTY_STABLE_ONLY.equals(key)) {
+        } else if (SettingsHelper.PROPERTY_CHECK_TIME_ROM.equals(key) || SettingsHelper.PROPERTY_STABLE_ONLY.equals(key)
+                || SettingsHelper.PROPERTY_SOUND.equals(key) || SettingsHelper.PROPERTY_VIBRATE.equals(key)) {
             Utils.setAlarm(this, mSettingsHelper.getCheckTimeRom(), false, true);
-        } else if (SettingsHelper.PROPERTY_CHECK_TIME_GAPPS.equals(key) || SettingsHelper.PROPERTY_GAPPS_SOURCE.equals(key)) {
+        } else if (SettingsHelper.PROPERTY_CHECK_TIME_GAPPS.equals(key) || SettingsHelper.PROPERTY_GAPPS_SOURCE.equals(key)
+                || SettingsHelper.PROPERTY_SOUND.equals(key) || SettingsHelper.PROPERTY_VIBRATE.equals(key)) {
             Utils.setAlarm(this, mSettingsHelper.getCheckTimeGapps(), false, false);
         }
 
@@ -169,6 +177,10 @@ public class SettingsActivity extends PreferenceActivity implements
     private void updateSummaries() {
         boolean expert = mSettingsHelper.getExpertMode();
         boolean stableonly = mSettingsHelper.getStableOnly();
+        boolean downloadfinished = mSettingsHelper.getDownloadFinished();
+        boolean soundmode = mSettingsHelper.getSoundMode();
+        boolean vibrationmode = mSettingsHelper.getVibrationMode();
+        RecoveryInfo info = mRecoveryHelper.getRecovery();
         String[] sourceentries = getResources().getStringArray(R.array.gaaps_version_entries);
         String[] sourcevalues = getResources().getStringArray(R.array.gapps_version_values);
         String[] checkentries = getResources().getStringArray(R.array.time_notifications_entries);
@@ -179,8 +191,6 @@ public class SettingsActivity extends PreferenceActivity implements
                 .valueOf(mSettingsHelper.getCheckTimeRom()))];
         String gappschecksummary = checkentries[Arrays.asList(checkvalues).indexOf(String
                 .valueOf(mSettingsHelper.getCheckTimeGapps()))];
-        boolean downloadfinished = mSettingsHelper.getDownloadFinished();
-        RecoveryInfo info = mRecoveryHelper.getRecovery();
         String shownoptionsstring = "";
         int count = 0;
         for (int i = 0; i < mSettingsHelper.INSTALL_OPTIONS.length; i++) {
@@ -210,6 +220,12 @@ public class SettingsActivity extends PreferenceActivity implements
                 + "\n- " + romchecksummary + ".");
         mCheckTimeGapps.setSummary(getResources().getText(R.string.settings_checktimegapps_summary)
                 + "\n- " + gappschecksummary + ".");
+        mSoundMode.setSummary(soundmode ? getResources().getText(R.string
+                .settings_notification_sound_summary_on) : getResources().getText(R.string
+                .settings_notification_sound_summary_off));
+        mVibrationMode.setSummary(vibrationmode ? getResources().getText(R.string
+                .settings_notification_vibrate_summary_on) : getResources().getText(R.string
+                .settings_notification_vibrate_summary_off));
         mDownloadFinished.setSummary(downloadfinished ? getResources().getText(R.string
                 .settings_download_finished_summary_on) : getResources().getText(R.string
                 .settings_download_finished_summary_off));

@@ -39,6 +39,8 @@ public class SettingsHelper {
     public static final String PROPERTY_STABLE_ONLY = "stableonly";
     public static final String PROPERTY_GAPPS_SOURCE = "gappssource";
     public static final String PROPERTY_CHECK_TIME_ROM = "checktimerom";
+    public static final String PROPERTY_SOUND = "notificationsound";
+    public static final String PROPERTY_VIBRATE = "notificationvibrate";
     public static final String PROPERTY_CHECK_TIME_GAPPS = "checktimegapps";
     public static final String PROPERTY_DOWNLOAD_PATH = "downloadpath";
     public static final String PROPERTY_DOWNLOAD_FINISHED = "downloadfinished";
@@ -63,6 +65,8 @@ public class SettingsHelper {
     public static final String DEFAULT_STABLE_ONLY_URL_FALSE = "http://api.rootbox.ca/updates/?d=%s&v=%s&b=%s&i=%s";
     private static final String DEFAULT_GAPPS_SOURCE = "http://api.rootbox.ca/updates/gapps/?v=%s";
     private static final String DEFAULT_CHECK_TIME = "18000000"; // five hours
+    private static final boolean DEFAULT_SOUND = true;
+    private static final boolean DEFAULT_VIBRATE = false;
     private static final String DEFAULT_DOWNLOAD_PATH = new File(Environment
             .getExternalStorageDirectory(), "rootboxota/").getAbsolutePath();
     private static final boolean DEFAULT_DOWNLOAD_FINISHED = true;
@@ -158,6 +162,14 @@ public class SettingsHelper {
 
     public static long getCheckTimeGapps() {
         return Long.parseLong(settings.getString(PROPERTY_CHECK_TIME_GAPPS, DEFAULT_CHECK_TIME));
+    }
+
+    public static boolean getSoundMode() {
+        return settings.getBoolean(PROPERTY_SOUND, DEFAULT_SOUND);
+    }
+
+    public static boolean getVibrationMode() {
+        return settings.getBoolean(PROPERTY_VIBRATE, DEFAULT_VIBRATE);
     }
 
     public void setDownloadRomId(Long id, String md5) {

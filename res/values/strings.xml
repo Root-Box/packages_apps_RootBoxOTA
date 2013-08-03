@@ -107,6 +107,13 @@
     <string name="time_notifications_two_hours">2 hours</string>
     <string name="time_notifications_five_hours">5 hours</string>
     <string name="time_notifications_daily">Daily</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notification_sound_title">Sound</string>
+    <string name="settings_notification_sound_summary_off">Tick to play sound upon notification.</string>
+    <string name="settings_notification_sound_summary_on">Untick to mute sound upon notification.</string>
+    <string name="settings_notification_vibrate_title">Vibrate</string>
+    <string name="settings_notification_vibrate_summary_off">Tick to vibrate upon notification.</string>
+    <string name="settings_notification_vibrate_summary_on">Untick not to vibrate upon notification.</string>
     <string name="settings_download_path">Downloads folder</string>
     <string name="settings_download_path_alert_title">Downloads path</string>
     <string name="settings_download_path_alert_summary">Specify the path to save the downloads!</string>

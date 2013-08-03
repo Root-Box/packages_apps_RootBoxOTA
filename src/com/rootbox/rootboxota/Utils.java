@@ -242,7 +242,12 @@ public class Utils {
                 .getSystemService(Service.NOTIFICATION_SERVICE);
 
         notif.flags |= Notification.FLAG_AUTO_CANCEL;
-        notif.defaults |= Notification.DEFAULT_SOUND;
+        if(SettingsHelper.getSoundMode()) {
+            notif.defaults |= Notification.DEFAULT_SOUND;
+        }
+        if(SettingsHelper.getVibrationMode()) {
+            notif.defaults |= Notification.DEFAULT_VIBRATE;
+        }
 
         notificationManager.notify(notificationId, notif);
     }

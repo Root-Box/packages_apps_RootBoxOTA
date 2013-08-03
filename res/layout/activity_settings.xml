@@ -41,6 +41,21 @@
                 android:entries="@array/gaaps_version_entries"
                 android:entryValues="@array/gapps_version_values" />
 
+        <Preference
+            android:key="downloadpath"
+            android:title="@string/settings_download_path" />
+
+        <CheckBoxPreference
+            android:key="downloadfinished"
+            android:title="@string/settings_download_finished_title"
+            android:summary="@string/settings_download_finished_summary_on" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:key="settings_notifications"
+            android:title="@string/settings_notifications" >
+
         <ListPreference
             android:key="checktimerom"
             android:title="@string/settings_checktimerom_title"
@@ -57,14 +72,15 @@
             android:entries="@array/time_notifications_entries"
             android:entryValues="@array/time_notifications_values" />
 
-        <Preference
-            android:key="downloadpath"
-            android:title="@string/settings_download_path" />
+        <CheckBoxPreference
+             android:key="notificationsound"
+             android:title="@string/settings_notification_sound_title"
+             android:summary="@string/settings_notification_sound_summary_on" />
 
         <CheckBoxPreference
-            android:key="downloadfinished"
-            android:title="@string/settings_download_finished_title"
-            android:summary="@string/settings_download_finished_summary_on" />
+            android:key="notificationvibrate"
+            android:title="@string/settings_notification_vibrate_title"
+            android:summary="@string/settings_notification_vibrate_summary_off" />
 
     </PreferenceCategory>
 
