@@ -26,7 +26,8 @@
         android:layout_height="fill_parent"
         android:gravity="center"
         android:scaleType="fitCenter"
-        android:src="@drawable/rootbox" />
+        android:src="@drawable/rootbox"
+        android:contentDescription="@string/none"/>
 
     <LinearLayout
         android:layout_width="match_parent"
