@@ -42,6 +42,14 @@
             android:textSize="32sp"
             android:paddingTop="20dp" />
 
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_gravity="center_horizontal|bottom">
+
         <TextView
             android:id="@+id/rom"
             android:layout_width="match_parent"
@@ -56,8 +64,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_marginTop="20dp" />
 
-    </LinearLayout>
+    </FrameLayout>
 
 </FrameLayout>

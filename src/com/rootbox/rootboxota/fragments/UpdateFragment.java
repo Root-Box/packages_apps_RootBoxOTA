@@ -90,12 +90,23 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
         Resources resources = context.getResources();
         if (mRomUpdater.isScanning() || mGappsUpdater.isScanning()) {
             mStatusView.setText(R.string.rom_scanning_2);
-            mRomView.setText(resources.getString(R.string.rom_name,
+            if ("".equals(mRomUpdater.getVersion())) {
+                mRomView.setText(resources.getString(R.string.rom_name,
                     new Object[] {
-                            Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION))
+                        resources.getString(R.string.no_not_installed)
                     }));
+            }
+            else {
+                mRomView.setText(resources.getString(R.string.rom_name,
+                    new Object[] {
+                        Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION))
+                    }));
+            }
             if (Integer.parseInt(mGappsUpdater.getVersion()) == -1) {
-                mGappsView.setText(resources.getString(R.string.no_gapps_installed));
+                mGappsView.setText(resources.getString(R.string.gapps_version,
+                    new Object[] {
+                        resources.getString(R.string.no_not_installed)
+                    }));
             } else {
                 mGappsView.setText(resources.getString(R.string.gapps_version,
                     new Object[] {
@@ -115,10 +126,18 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
                         Utils.getReadableVersionRom(rom.getFilename())
                     }));
             } else {
-                mRomView.setText(resources.getString(R.string.rom_name,
-                    new Object[] {
-                        Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION))
+                if ("".equals(mRomUpdater.getVersion())) {
+                    mRomView.setText(resources.getString(R.string.rom_name,
+                        new Object[] {
+                            resources.getString(R.string.no_not_installed)
                     }));
+                }
+                else {
+                    mRomView.setText(resources.getString(R.string.rom_name,
+                        new Object[] {
+                            String.valueOf(mRomUpdater.getVersion())
+                    }));
+                }
             }
             if (gapp != null) {
                 mGappsView.setText(resources.getString(R.string.gapps_version,
@@ -127,7 +146,10 @@ public class UpdateFragment extends Fragment implements UpdaterListener {
                     }));
             } else {
                 if (Integer.parseInt(mGappsUpdater.getVersion()) == -1) {
-                    mGappsView.setText(resources.getString(R.string.no_gapps_installed));
+                    mGappsView.setText(resources.getString(R.string.gapps_version,
+                        new Object[] {
+                            resources.getString(R.string.no_not_installed)
+                        }));
                 } else {
                     mGappsView.setText(resources.getString(R.string.gapps_version,
                         new Object[] {

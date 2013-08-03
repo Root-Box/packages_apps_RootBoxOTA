@@ -37,8 +37,8 @@
     <string name="all_up_to_date">You\'re up to date!</string>
     <string name="all_up_to_date_2">You\'re up to date!\n</string>
     <string name="rom_gapps_new_version">New versions found!</string>
-    <string name="rom_new_version">New rom version found!</string>
-    <string name="gapps_new_version">New google apps version found!</string>
+    <string name="rom_new_version">New ROM version found!</string>
+    <string name="gapps_new_version">New Google apps version found!</string>
     <string name="rom_scanning">Checking...</string>
     <string name="rom_scanning_2">Checking...\n</string>
     <string name="rom_name">RootBox: %1$s</string>
@@ -47,7 +47,9 @@
     <string name="gapps_outdated">Your Google apps are outdated!</string>
     <string name="no_rom_updates">No ROM updates found...</string>
     <string name="no_gapps_updates">No Google apps updates found...</string>
-    <string name="no_gapps_installed">Google apps not installed</string>
+    <string name="no_rom_installed">ROM is not installed</string>
+    <string name="no_gapps_installed">Google apps is not installed</string>
+    <string name="no_not_installed">not installed</string>
     <string name="check_rom_updates_error">Error checking for ROM updates</string>
     <string name="check_rom_updates_no_new">No ROM updates found</string>
     <string name="check_gapps_updates_no_new">No google apps updates found</string>

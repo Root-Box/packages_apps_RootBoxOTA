@@ -186,6 +186,9 @@ public class DownloadFragment extends android.preference.PreferenceFragment impl
 
     private String getSummary(boolean isRom) {
         if (isRom) {
+            if ("".equals(mRomUpdater.getVersion())) {
+                return mContext.getResources().getString(R.string.no_rom_installed);
+            }
             return Utils.getReadableVersionRom(Utils.getProp(Utils.MOD_VERSION));
         } else {
             if (Integer.parseInt(mGappsUpdater.getVersion()) == -1) {
